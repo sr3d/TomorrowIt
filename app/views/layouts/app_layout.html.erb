@@ -1,0 +1,79 @@
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	
+	<%= stylesheet_link_tag "reset-fonts-grids.css", :media => "all" -%>
+  <%= stylesheet_link_tag "layout", :media => "all" -%>
+  <%= stylesheet_link_tag "style", :media => "all" -%>
+  <%= javascript_include_tag :defaults %>
+  
+  <!--[if lt IE 7]>
+    <script defer type="text/javascript" src="/javascripts/pngfix.js"></script>
+  <![endif]-->  
+  <!--[if IE]>
+    <script type="text/javascript" charset="utf-8">
+      var console = { log: function(msg) {;}};
+      try {document.execCommand("BackgroundImageCache", false, true);} catch(e) {};
+     </script> 
+  <![endif]-->
+  
+</head>
+
+<body id="body_container">
+	<div id="page_container">
+
+		<div id="top_menu_container">
+			<%#= render :partial => 'shared/top_menu' -%>
+		</div>
+		
+		<div id="center_container">
+			<div id="center_padding">
+				<div id="masthead">
+					<span>Marrily.com</span>
+				</div><!-- #masthead -->
+				
+				<div id="content_container">
+					<!-- Content -->
+					<div id="content_padding">
+						
+						<!-- User Greetings -->
+						<div id="user_greetings">
+							<div id="user_greetings_padding">
+								<%#= render :partial => 'shared/user_greetings' -%>	
+							</div><!-- #user_greetings_padding -->
+						</div><!-- #user_greetings -->
+						
+						<!-- Main Menu -->
+						<div id="main_menu_container">
+							<%#= render :partial => 'shared/main_menu' -%>
+						</div><!-- #main_menu_container -->
+            
+						<div id="main_content_container">
+						  <div id="main_content_padding">
+						    <%= yield %>
+						  </div>
+						</div>
+	
+		        <% if flash[:notice] -%>
+		            <div id="notice" style="background-color: yellow; padding: 10px;"><%= flash[:notice] -%></div>
+		        <% end -%>
+
+		        <% if flash[:error] -%>
+		            <div id="error" style="background-color: red; padding: 10px; "><%= flash[:error] -%></div>
+		        <% end -%>
+	          
+		        <div style='clear:both'/>
+					</div> <!-- content_padding -->
+					<div style='clear:both'/>
+				</div><!-- #content_container -->
+				
+				<!-- Footer -->
+				<%#= render :partial => 'shared/footer' -%>
+
+			</div><!-- #center_padding -->
+		</div><!-- #center_container -->
+	</div><!-- #page_container -->
+        <script type="text/javascript">window._token = '<%= form_authenticity_token %>';</script>
+</body>

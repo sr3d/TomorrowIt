@@ -1,0 +1,213 @@
+body
+{margin: 0; padding: 0; background-color: white; text-align: center; color: #535353}
+
+#page_container
+{ width: 100%; }
+
+#top_menu_container
+{ }
+	#top_menu
+	{margin: auto; text-align: right; width: 980px; }	
+
+
+	#center_container
+	{ margin: auto; background: url('../images/masthead_bg.png') repeat-x top left; }
+		#center_padding
+		{ width: 980px; margin: auto; text-align: left; width: 980px}
+	
+		td.left
+		{width: 655px;}
+		#left_container
+		{ width: 665px; padding: 0 6px 0 0; background: transparent url('../images/right_shadow.gif') repeat-y top right; }
+		  #left_title
+		  { background: url('../images/left_title_bg.gif') repeat-x top left; border-bottom: 8px solid #0077a4; padding: 5px 10px 2px 10px; color: white; font-size: 16px; font-weight: bold}
+		  #left
+		  { padding: 0 0px 0 0px; border: 1px solid #cdcfdc;}
+	  #left_bottom
+	  { background: url('../images/bottom_shadow.gif') no-repeat scroll right top; height: 8px; font-height: 8px;}
+	  
+	  td.right
+	  {}
+	    #right
+	    { width: 310px; }
+	
+
+#masthead
+{ height: 79px; width: 100%; background: url('../images/masthead.png') no-repeat top left; }
+	#masthead span
+	{ display: none; }
+
+#content_container
+{ width: 980px;}
+	#content_padding
+	{ padding: 0 0px 5px 0px;}
+	
+	#main_content_container
+	{ background-color: #efeeef; margin-top: 1px; padding: 10px;}
+	  #main_content_padding
+	  { background-color: white; }
+	  
+/*
+	  #section_container
+	  { padding: 10px 10px; }
+	
+	  */
+	
+#user_greetings
+{ text-align: right; }
+	#user_greetings_padding
+	{ padding: 5px; }	
+
+#main_menu_container
+{ }
+	#main_menu
+	{ width: 100%; }
+		#main_menu ul
+		{ padding-left: 0; margin-left: 10px; }
+			#main_menu ul li
+			{ display: inline; float: left; padding-right: 3px;}
+			#main_menu ul li a
+			{ text-decoration: none; display: block; padding: 5px 10px 5px 10px; color: #bfbfbf; font-size: 18px; }
+			#main_menu ul li a:hover
+			{ color: #cb67da; }
+			#main_menu ul li a.current
+			{ background: #ac38bd url('../images/v1/main_navigation_button_bg.png') repeat-x top left; color: white; }
+
+	
+	#main_menu_divider
+	{ width: 100%; height: 5px; line-height: 5px; background: url('../images/v1/main_navigation_divider.png') repeat-x top left;}
+	
+	.bar_divider
+	{ width: 100%; height: 5px; line-height: 5px; background: url('../images/v1/main_navigation_divider.png') repeat-x top left;}
+	
+	#submenu
+	{background: #dddddd url('../images/v1/main_nav_sub_menu_bg.png') repeat-x top left; border-top: 2px solid #d4cfd5; min-height:42px; }
+		#submenu_padding
+		{padding: 0px;}
+			#submenu_padding ul
+			{ padding-left: 0; margin-left: 10px; }
+				#submenu_padding ul li
+				{ display: inline; float: left; padding-right: 3px;}
+				#submenu_padding ul li a
+				{ text-decoration: none; display: block; padding: 13px 30px 13px 18px; color: #858585; font-size: 14px; font-weight: bold;  }
+				#submenu_padding ul li a:hover, #submenu_padding ul li a.current
+				{ background: url( '../images/v1/icons/dot.png' ) no-repeat 0% 50%; color: #b140c3; font-weight: bold; }
+		
+		
+	
+#footer
+{ background: #f7d1fd url('../images/footer_bg.png') repeat-x top left; text-align: center; height: 70px; clear: both; }
+	#footer_padding
+	{ padding: 10px; }
+		
+
+/* Fixed the Floating Issue */	
+#main_menu:after, #submenu:after, .guest_entry_header:after
+{clear:both; content:"."; display:block; height:0pt; visibility:hidden; }	
+
+/* Guest Page */
+.guest_index
+{ }
+.guest_index li
+{ display: inline; float: left; padding: 3px 10px 3px 10px; }
+
+.guestIndex_detailed
+{ clear: left;  }
+  .guestIndex_detailed li
+  {display: inline; float: left; padding: 3px 4px 0px 10px;}
+  
+  .few_guests, .some_guests, .no_guests, .many_guests
+  { font-weight: bold; text-decoration: none;}
+  .guest_letter_link
+  { text-decoration: none; display: block;  padding: 3px; }
+  a.guest_letter_link:hover, a.guest_letter_link_selected
+  { text-decoration: none; background-color: #DDE3FF; }
+  
+  .few_guests a, .some_guests a, .no_guests a, .many_guests a
+  {}
+  .few_guests
+  { font-size: 10px;}
+  .some_guests
+  { font-size: 12px;}
+  .many_guests
+  { font-size: 16px;}
+  .no_guests
+  { text-decoration: none; font-size: 9px; }
+
+
+
+.guest_group_list_container
+{ width: 600px; }
+
+.guest_group_header
+{  }
+
+.guest_group_letter
+{font-weight: bold; font-size: 18px; padding-left: 5px; float: left;}
+
+.guest_group_summary
+{float: right;}
+
+#guest_group_list
+{ color: #5F5F5F;  clear: left;  border-top: 2px solid #9F9F9F;
+}
+
+  .guest_entry_odd, .guest_entry_even
+  { padding: 5px; margin: 0px 0 0 0px; border: 1px solid white; }
+
+  .guest_entry_odd:hover, .guest_entry_even:hover
+  { border: 1px solid #E0E2EF;}
+
+  .guest_entry_odd
+  { background-color: #F5F5F5; }
+  
+  .guest_entry_even
+  {  }
+
+/*
+.guest_entry_container
+{ margin-left: 40px; position: relative;}
+  .guest_entry_RSVP_code
+  { text-transform: uppercase; font-weight: bold; border: 1px solid #CFCFCF; padding: 0 3px 0px 3px; margin-bottom: 3px; margin-right: 3px; color: #162370; float: right;}
+  .guest_entry_name
+  { font-weight: bold; font-size: 14px; float: left;}
+  .guest_entry_email
+  { font-style: italics; float: left; margin-left: 5px;}
+  .guest_entry_phone
+  { float: right;}
+
+.guest_entry_body  
+{ border-top: 1px solid #9F9F9F; clear: left;}
+
+.guest_divider
+{ border-bottom: 1px solid #9F9F9F; }
+
+
+.guest_entry_tag
+{ text-transform: uppercase; font-size: 7pt; letter-spacing: 1px; border: 1px solid #CFCFCF; padding: 0 3px 0 3px;}
+
+
+.guest_entry_menu
+{ float: left; width: 30px; text-align: center; }
+  .guest_entry_menu_ctn
+  { border-right: 1px solid #AFAFAF; }
+  .guest_entry_menu_item
+  { padding: 3px;}
+  .guest_entry_menu_item a
+  { font-size: 9px; text-decoration: none; }
+  */
+
+.ul_form
+{ }
+  .ul_form li
+  { clear: both;}
+  .ul_form li label
+  { font-weight: bold;}
+  .ul_form li span
+  {  float: left; padding-right: 5px; }
+  .ul_form li span label
+  {  clear: both; font-size: 9px; display: block; }
+
+
+
+
