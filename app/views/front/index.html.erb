@@ -1,24 +1,138 @@
-
-<div style="padding: 5px;">
-  <span id="tomorrow_it">tomorrow it</span> 
-  <span id="subtag">  start your tomorrow today</span>
-
+<div style="height: 50px;">
+  
 </div>
 
-<div>
-  Tomorrow It is based on a simple idea: prepare yourself for tomorrow.  Basically, it's a quick written pad for things to do for tomorrow.
-  <br/>
-  <br/>
-  <ul>
-    <li>Sign up is painless
-    <li>5 minutes to think, 5 seconds to write down</li>
-    <li>synchronize with Outlook thru iCal</li>
-    <li>iPhone friendly</li>
-  </ul>
-</div>
+<div class='wrapper'>
+
+  <div id="login_form_wrapper" style='float:right; position: relative; width: 295px;'>
+
+    <div style='background-color: #959595; float: right;'>
+      <div style='float:right;'>
+        <div style=''>
+          <a href="javascript:void(0)" onclick="new Ajax.Request('/session', {asynchronous:true, evalScripts:true, parameters:Form.serialize(this)}); return false;" id='btnLogin' style='display: block; color: white;padding: 10px;'>login</a>
+        </div>
+      </div>
+
+      <div style='padding: 10px;float:left; background-color: #efeeef;'>
+        <% remote_form_for :user, :url => { :controller => 'sessions', :action => "create" } do |form| %>
+          <ul class='horizontal_list' id="login_form" >
+            <li><span class='big_label'>u</span></li>
+            <li><%= form.text_field :login, :class => 'login_input' %></li>
+            <li><span class='big_label'>p</span></li>
+            <li><%= form.password_field :password, :class => 'login_input' %></li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+    
+
+    
+  </div>  
+  
+
+  <div id="main_content_container">
+    <div id="main_content_padding" style="padding: 10px 30px;">
+      <div >
+        <span id="tomorrow_it">tomorrow it</span> 
+        <span id="subtag">&nbsp;&nbsp;&nbsp;start your tomorrow today</span>
+      </div>
+  
+      <div id="add_item_form" style='padding: 50px 0;'>
+        <% remote_form_for :tasks, :url => 'blah' do |form| %>
+          <table border="0" cellspacing="0" cellpadding="0" width="890px">
+            <tr>
+              <td style='width: 740px; border: 1px solid #959595; background-color: #ffffd7; height: 35px;'>
+                  <div style='padding: 5px'>
+                    <%= form.text_field :name, :value => 'something to do for tomorrow', :class => 'front_new_item' %>  
+                  </div>
+                </div>
+              </td>
+              <td style='width: 5px;'></td>
+              <td style='background: #ff0071'>
+                <a href="#" style='display: block; color: white; background-color: #ff0071; text-align: center; font-size: 18px;border: 1px solid #ff0071;'>tmr it</a>
+              </td>
+            </tr>
+          </table>
+        <% end %>
+        <br style='clear:both'/>
+      </div>
+          
+
+      <div id="introduction_wrapper">
+        <div class="one_third">
+          <span class='colored' style='font-weight: bold;'>tomorrow it</span> is based on a simple idea:  prepare yourself for tomorrow.        
+          It's a quick writing pad for things to do tomorrow, and something better
+          <br/>
+          <br/>
+          <br/>
+          <b>available now for tomorrow usage</b>
+          <br/>
+          <br/>
+          <br/>
+          developed by <a href="http://alexle.net" target='_blank'>alex le</a>
+        </div><!-- .one_third -->
+        
+        <div class="one_third">
+          <div class='big_tag_line'>* simple 'n nimble todo's of tmr</div>
+          <div class='big_tag_line'>* talks to google cal, iCal, outlook</div>
+          <div class='big_tag_line'>* set but don't forget</div>
+          <div class='big_tag_line'>* slim contender as your homepage</div>
+        </div><!-- .one_third -->
+
+        <div class="one_third" style='float:right;'>
+          <div id="signup_form_wrapper" style='border:0px solid red;'>
+            <% remote_form_for :user, :url => users_path, :html => { :id =>'signup_form' } do |form| %>
+              <table border="0" cellspacing="0px" cellpadding="0px" width="100%">
+                <tr>
+                  <td align="right"><span class='big_label'>username</span></td>
+                  <td align='right'><%= form.text_field :login, :class => 'textbox' %></td>
+                </tr>
+
+                <tr>
+                  <td align="right"><span class='big_label'>password</span></td>
+                  <td align='right'><%= form.password_field :password, :class => 'textbox' %></td>
+                </tr>
+
+                <tr>
+                  <td align="right"><span class='big_label'>confirmation</span></td>
+                  <td align='right'><%= form.password_field :password_confirmation, :class => 'textbox' %></td>
+                </tr>
+                
+                <tr>
+                  <td align="right"><span class='big_label'>email</span></td>
+                  <td align='right'><%= form.text_field :email, :class => 'textbox' %></td>
+                </tr>                
+
+                <tr>
+                  <td align="right"></td>
+                  <td align='right'>
+                    <a href='javascript:void(0)' 
+                      onclick="new Ajax.Request('/users', {asynchronous:true, evalScripts:true, parameters:Form.serialize('signup_form')}); return false;">
+                      pain-free signup</a>
+                  </td>
+                </tr>
 
 
+              </table>
+            <% end %>
+          </div>
+        </div><!-- .one_third -->
 
+
+        <br style='clear:both'/>
+      </div>
+      
+      
+      
+      <br style='clear:both'/>
+    </div><!-- #main_content_padding -->
+    
+    
+    
+  </div><!-- #main_content_container -->
+
+
+</div><!-- .wrapper-->
 
 
 start your tomorrow today
