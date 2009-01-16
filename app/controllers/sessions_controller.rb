@@ -14,12 +14,38 @@ class SessionsController < ApplicationController
       # button. Uncomment if you understand the tradeoffs.
       # reset_session
       log_user_in( user )
-      redirect_back_or_default('/')
+      
+      respond_to do |format|
+        format.html do
+          redirect_back_or_default('/')
+        end
+        format.js do 
+          render :update do |page|
+            page << 'location.reload();' 
+          end
+        end
+      end
+      
     else
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]
-      render :action => 'new'
+      
+      respond_to do |format|
+        
+        format.html do
+          render :action => 'new'
+        end
+        
+        format.js do 
+          render :update do |page|
+            page << "showForgotPassword();"
+            page << 'Effect.Shake("btnLogin", {duration: 0.3, distance: 2});'
+          end
+        end # format
+        
+      end # respond to
+      
     end
   end
 

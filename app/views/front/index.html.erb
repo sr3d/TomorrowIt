@@ -9,26 +9,51 @@
     <div style='background-color: #959595; float: right;'>
       <div style='float:right;'>
         <div style=''>
-          <a href="javascript:void(0)" onclick="new Ajax.Request('/session', {asynchronous:true, evalScripts:true, parameters:Form.serialize(this)}); return false;" id='btnLogin' style='display: block; color: white;padding: 10px;'>login</a>
+          <a href="javascript:void(0)" onclick="new Ajax.Request('/session', {asynchronous:true, evalScripts:true, parameters:Form.serialize('login_form')}); return false;" id='btnLogin' style='display: block; color: white;padding: 10px;'>login</a>
         </div>
       </div>
 
       <div style='padding: 10px;float:left; background-color: #efeeef;'>
-        <% remote_form_for :user, :url => { :controller => 'sessions', :action => "create" } do |form| %>
+        <% form_remote_tag :url => { :controller => 'sessions', :action => "create" }, :html => { :id => 'login_form' } do %>
           <ul class='horizontal_list' id="login_form" >
             <li><span class='big_label'>u</span></li>
-            <li><%= form.text_field :login, :class => 'login_input' %></li>
+            <li><%= text_field_tag 'login', nil ,:class => 'login_input' %></li>
             <li><span class='big_label'>p</span></li>
-            <li><%= form.password_field :password, :class => 'login_input' %></li>
+            <li><%= password_field_tag 'password', nil, :class => 'login_input' %></li>
           </ul>
         <% end %>
       </div>
     </div>
     
+    <div id="forgot_password_wrapper" style='float: right; text-align: right; margin-right: 50px;display:none;'>
+      <a href="javascript:void(0)" onclick="toggleForgotPasswordForm();" class='small'>forgot password?</a>
+      <br/>
+      <div id="forgot_password_form_wrapper" style='display:none;'>
+        <% remote_form_for :user, :url => { :controller => 'users', :action => 'forgot_password' } do |form| %>
+          email <%= form.text_field :email %>
+          <%= submit_tag 'send' %>
+        <% end %>
+      </div>
+    </div>
 
     
   </div>  
   
+  <script type="text/javascript" charset="utf-8">
+    function showForgotPassword() { 
+      $('forgot_password_wrapper').show();
+      new Effect.Highlight( 'forgot_password_wrapper', { duration: 0.3 } );
+    }
+    
+    function toggleForgotPasswordForm()
+    {
+      if( $('forgot_password_form_wrapper').visible() )
+        $('forgot_password_form_wrapper').hide();
+      else
+        Effect.BlindDown('forgot_password_form_wrapper', { duration: 0.3 });
+      return false
+    }  
+  </script>  
 
   <div id="main_content_container">
     <div id="main_content_padding" style="padding: 10px 30px;">
