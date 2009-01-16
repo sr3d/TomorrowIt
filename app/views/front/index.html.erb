@@ -53,7 +53,7 @@
         Effect.BlindDown('forgot_password_form_wrapper', { duration: 0.3 });
       return false
     }  
-  </script>  
+  </script>
 
   <div id="main_content_container">
     <div id="main_content_padding" style="padding: 10px 30px;">
@@ -63,7 +63,7 @@
       </div>
   
       <div id="add_item_form" style='padding: 50px 0;'>
-        <% remote_form_for :tasks, :url => 'blah' do |form| %>
+        <% remote_form_for :task, :url => tasks_path, :html => { :id => 'new_task_form' }do |form| %>
           <table border="0" cellspacing="0" cellpadding="0" width="890px">
             <tr>
               <td style='width: 740px; border: 1px solid #959595; background-color: #ffffd7; height: 35px;'>
@@ -74,7 +74,9 @@
               </td>
               <td style='width: 5px;'></td>
               <td style='background: #ff0071'>
-                <a href="#" style='display: block; color: white; background-color: #ff0071; text-align: center; font-size: 18px;border: 1px solid #ff0071;'>tmr it</a>
+                <a href="#" 
+                  onclick="new Ajax.Request('/tasks', {asynchronous:true, evalScripts:true, parameters:Form.serialize('new_task_form')}); return false;"
+                  style='display: block; color: white; background-color: #ff0071; text-align: center; font-size: 18px;border: 1px solid #ff0071;'>tmr it</a>
               </td>
             </tr>
           </table>
@@ -160,5 +162,8 @@
 </div><!-- .wrapper-->
 
 
-start your tomorrow today
-
+<div>
+  <% @tasks.each do |task| %>
+    <%= task.name %> <br/>
+  <% end %>
+</div>

@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
         end
         format.js do 
           render :update do |page|
-            page << 'location.reload();' 
+            page << 'location.reload();'
           end
         end
       end

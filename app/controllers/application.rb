@@ -23,4 +23,8 @@ protected
     flash[:notice] = "Logged in successfully"
   end
   
+  def get_temp_task_ids_from_cookies
+    cookies[:temp_tasks ].nil? ? [] : cookies[:temp_tasks].split(',')
+  end
+  
 end
