@@ -147,12 +147,12 @@ div.autocomplete ul li
   { margin-left: 20px; }
 
   .tomorrow_item_wrapper .item_name
-  { font-size: 18px; color: #ff0071; padding: 10px 0 5px 0; }
+  { font-size: 18px; color: #ff0071; padding: 15px 0 5px 0; }
   .tomorrow_item_wrapper .item_action_link
   { margin-right: 20px; }
 
 .item_action_link
-{ font-size: 10px; border: 1px solid transparent;  }
+{ font-size: 10px; border: 1px solid transparent; }
 .item_action_link:hover
 { background-color: #FF0071; color: white; }
 

@@ -1,18 +1,19 @@
 <% 
   task ||= Task.new 
   visible ||= ''
-
 %>
-
 
 <div id="item_wrapper_<%= task.id %>" class='tomorrow_item_wrapper' style='<%= visible %>'>
   <div id="item_name_<%= task.id %>" class='item_name'>
-    <%= task.name %>
+    <%= h task.name %>
   </div>
   
   <div class="item_actions_wrapper">
-    <a href="#" class='item_action_link'>DONE</a> <a href="#" class='item_action_link'>TODAY IT</a>
+    <%= link_to_remote 'DONE', 
+          :url => done_task_path( task ), 
+          :html => { :class => 'item_action_link' } %>
+    <%= link_to_remote 'TODAY IT', 
+          :url => today_it_task_path( task ), 
+          :html => { :class => 'item_action_link' } %>
   </div>
-  
-  <br style='clear:both'/>
 </div>
