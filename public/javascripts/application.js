@@ -14,14 +14,22 @@ function toggleForgotPasswordForm()
 
 function checkForEmptyTasks()
 {
-  if( ( $('today_tasks_wrapper').select( ".today_item_wrapper") ).length == 0 )
-    $('today_empty').show();
-  else
+  if( $('today_tasks_wrapper').down( ".today_item_wrapper") )
+  {
     $('today_empty').hide();
-    
-    
-  if( ( $('tomorrow_tasks_wrapper').select( ".tomorrow_item_wrapper") ).length == 0 )
-    $('tomorrow_empty').show();
+  }
   else
+  {
+    $('today_empty').show();
+  } 
+    
+  if( $('tomorrow_tasks_wrapper').down( ".tomorrow_item_wrapper" ) )
+  {
     $('tomorrow_empty').hide();
+  }
+  else
+  {
+    $('tomorrow_empty').show();
+  }
 }
+

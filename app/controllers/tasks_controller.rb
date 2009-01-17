@@ -18,7 +18,7 @@ class TasksController < ApplicationController
       
       format.js do 
         render :update do |page|
-          page << ''
+          page.show "tasks_wrapper"
           page.insert_html :top, 'tomorrow_tasks_wrapper', :partial => 'tasks/tomorrow_item', :locals => { :task => @task, :visible => 'display:none;' }
           page.visual_effect :blind_down, "item_wrapper_#{@task.id}", :duration => 0.3
           page.visual_effect :highlight, "item_wrapper_#{@task.id}", :duration => 0.6
@@ -53,9 +53,7 @@ class TasksController < ApplicationController
         format.js do
           render :update do |page|
             page.visual_effect :blind_up, "item_wrapper_#{@task.id}", :duration => 0.3, 
-              :afterFinish => "function() { $('item_wrapper_#{@task.id}').remove(); }"
-              
-            page << 'checkForEmptyTasks();'  
+              :afterFinish => "function() { $('item_wrapper_#{@task.id}').remove(); checkForEmptyTasks();}"
           end #render
         end #js
 
