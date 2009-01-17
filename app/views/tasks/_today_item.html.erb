@@ -1,0 +1,12 @@
+<% task ||= Task.new %>
+
+<div id="item_wrapper_<%= task.id %>" class='today_item_wrapper'>
+  <div id="item_name_<%= task.id %>" class='item_name'>
+    <%= task.name %>
+  </div>
+  
+  <div class="item_actions_wrapper">
+    <a href="#" class='item_action_link'>DONE</a> <a href="#" class='item_action_link'>TMR IT</a>
+  </div>
+
+</div>

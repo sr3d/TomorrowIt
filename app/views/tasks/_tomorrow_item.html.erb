@@ -1,0 +1,18 @@
+<% 
+  task ||= Task.new 
+  visible ||= ''
+
+%>
+
+
+<div id="item_wrapper_<%= task.id %>" class='tomorrow_item_wrapper' style='<%= visible %>'>
+  <div id="item_name_<%= task.id %>" class='item_name'>
+    <%= task.name %>
+  </div>
+  
+  <div class="item_actions_wrapper">
+    <a href="#" class='item_action_link'>DONE</a> <a href="#" class='item_action_link'>TODAY IT</a>
+  </div>
+  
+  <br style='clear:both'/>
+</div>
