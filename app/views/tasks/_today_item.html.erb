@@ -7,6 +7,12 @@
   <div id="item_name_<%= task.id %>" class='item_name'>
     <%= h task.name %>
   </div>
+  <% unless task.description.blank? %>
+    <div class='item_description'>
+      <%= h task.description %>
+    </div>
+  <% end %>
+  
   
   <div class="item_actions_wrapper">
     <%= link_to_remote 'DONE', 

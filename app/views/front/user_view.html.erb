@@ -15,16 +15,23 @@
               </div>
             </td>
             <td style='width: 5px;'></td>
-            <td style='background: #ff0071'>
-              <a href="#" 
-                onclick="new Ajax.Request('/tasks', {asynchronous:true, evalScripts:true, parameters:Form.serialize('new_task_form')}); return false;"
-                style='display: block; color: white; background-color: #ff0071; text-align: center; font-size: 18px;border: 1px solid #ff0071;'>tmr it</a>
+            <td>
+              <%= submit_tag 'tmr it', :style => "display: block; color: white; background-color: #ff0071; text-align: center; font-size: 18px;border: 3px solid #ff0071; background: #ff0071; height: 30px; width: 120px;", :tabindex => 3 %>
             </td>
           </tr>
             
           <tr>
             <td>
-              NOTE <%= form.text_field :description, :value => 'some description', :class => 'item_description', :tabindex => 2 %>  
+              <div style='margin-top: 5px'>
+                <div style='float:left;font-size: 10px; padding: 7px;'>NOTE</div> 
+
+                <div style='margin-left: 50px; background-color: #EFEEEF; '>
+                  <div style='padding: 5px;'>
+                    <%= form.text_field :description, :value => 'some description', :class => 'item_description', :tabindex => 2 %>  
+                  </div>
+                </div>
+              </div><!-- margin-->
+              
             </td>
             <td style='width: 5px;'></td>
             <td style=''>

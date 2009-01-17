@@ -16,44 +16,6 @@ h3
 { font-size: 18px; }
 
 
-
-/* Auto-Complete */
-/* http://wiki.script.aculo.us/scriptaculous/show/Ajax.Autocompleter */
-div.autocomplete 
-{ position:absolute; width:250px; background-color:white; border:1px solid #888;margin:0px; padding:0px;}
-div.autocomplete ul 
-{ list-style-type:none; margin:0px; padding:0px; }
-div.autocomplete ul li.selected 
-{ background-color: #ffb;}
-div.autocomplete ul li 
-{ list-style-type:none; display:block;margin:0; padding:2px; height:32px; cursor:pointer; }
-
-/* Ajax Control Style */ 
-/* when an Ajax request from a checkbox errors out */
-.ajax_error 
-{ border: 2px solid red; background-color: red; color: red;}
-
-/* Section */
-.section_container
-{ padding: 10px 10px; }
-  .with_separator
-  { border-bottom: 1px solid #d4d4d4 }
-  .with_light_separator
-  { border-bottom: 1px solid #eeeeee;}
-  
-  .section_content
-  { padding: 0 0 0 10px; clear: both;}
-  .section_title, .milestone_section_title
-  { color: white; font-size: 14px; font-weight: bold; padding: 5px 0px 3px 5px; }
-  .milestone_section_title a
-  { text-decoration: none; color: white; }
-  .milestone_section_title a:hover
-  { color: #fffd39;}
-  .section_title
-  { background: url('../images/section_title_bg.gif') repeat-x top left; }
-  .milestone_section_title
-  {background: url('../images/milestone_section_title_bg.gif') repeat-x top left; }
-
 .date_wrapper { margin-bottom: 20px; }
   .date_header_wrapper{}
     .date_header_day_of_week
@@ -114,7 +76,7 @@ div.autocomplete ul li
 input.front_new_item
 { font-size: 18px; width: 730px;background-color: transparent; border: 0px; }
 input.item_description
-{ border: 0px; font-size: 14px; width: 700px; background-color: }
+{ border: 0px; font-size: 14px; width: 650px; background-color: #EFEEEF;  }
 
 #signup_form_wrapper .textbox
 { border: 0px; background-color: #f4f4f4; width: 150px; padding: 5px; margin: 5px 0px; }
@@ -127,8 +89,8 @@ input.item_description
 	
 .one_third
 { width: 30%; float: left; margin-right: 1% }
-.three_fifths
-{ width: 60%; float: left; margin-right: 1% }
+.tomorrow_wrapper
+{ width: 450px; float: left; margin-right: 1% }
 
 .colored
 { color: #ff0071 }
@@ -143,6 +105,8 @@ input.item_description
 { font-size: 10px; color: #ff0071; padding-left: 10px; }
 .today_item_wrapper
 {}
+  .item_description
+  { font-size: 11px; }
   .today_item_wrapper .item_name
   { font-weight: bold; padding: 20px 0 5px 0; }
   .today_item_wrapper .item_action_link
@@ -152,6 +116,7 @@ input.item_description
   { font-size: 18px; color: #ff0071; padding: 15px 0 5px 0; }
   .tomorrow_item_wrapper .item_action_link
   { margin-right: 20px; }
+  
 
 .item_action_link
 { font-size: 10px; border: 1px solid transparent; }

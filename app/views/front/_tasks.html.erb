@@ -6,7 +6,7 @@
       </div>
     </div>
   
-    <div class='three_fifths'>
+    <div class='tomorrow_wrapper'>
       <div style='padding-left: 40px;'>
         <span style='font-size: 18px;'>tomorrow</span>
         <span class='tomorrow_date'><%= @tomorrow.strftime('%m.%d.%Y')%></span>      
@@ -31,7 +31,7 @@
     </div>
   </div><!-- #today_tasks_wrapper -->
 
-  <div class='three_fifths'>
+  <div class='tomorrow_wrapper'>
     <div id="tomorrow_tasks_wrapper" style='padding-left: 40px;'>
       <% @tomorrow_tasks.each do |task| %>
         <%= render :partial => 'tasks/tomorrow_item', :locals => { :task => task } %>
