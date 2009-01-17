@@ -21,11 +21,14 @@ protected
     @task_ids = get_temp_task_ids_from_cookies
     @tasks = @task_ids.empty? ? [] : Task.find_temp_tasks( @task_ids )
     
-    @today, @tomorrow = Time.now.to_date, (Time.now.to_date + 1)
+    @today, @tomorrow = Time.now.to_date, (Time.now.to_date + 1.day)
     
     @today_tasks = @tasks.collect{ |task| task if task.due_date.to_date == @today }.compact
     @tomorrow_tasks = @tasks.collect{ |task| task if task.due_date.to_date == @tomorrow }.compact
     
+    #logger.error @tomorrow.inspect
+    #logger.error @tomorrow_tasks.inspect
+
   end
 
 end

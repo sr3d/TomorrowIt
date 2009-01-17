@@ -1,5 +1,6 @@
+
 <div style="height: 50px;">
-  
+<!-- spacer -->  
 </div>
 
 <div class='wrapper'>
@@ -38,22 +39,6 @@
 
     
   </div>  
-  
-  <script type="text/javascript" charset="utf-8">
-    function showForgotPassword() { 
-      $('forgot_password_wrapper').show();
-      new Effect.Highlight( 'forgot_password_wrapper', { duration: 0.3 } );
-    }
-    
-    function toggleForgotPasswordForm()
-    {
-      if( $('forgot_password_form_wrapper').visible() )
-        $('forgot_password_form_wrapper').hide();
-      else
-        Effect.BlindDown('forgot_password_form_wrapper', { duration: 0.3 });
-      return false
-    }  
-  </script>
 
   <div id="main_content_container">
     <div id="main_content_padding" style="padding: 10px 30px;">
@@ -161,28 +146,27 @@
 
 </div><!-- .wrapper-->
 
+<div id="tasks_wrapper">
 
-<div id="" style='border-bottom: 1px solid #e2e2e2; padding: 30px 0 15px 0;'>
-  <div class='one_third'>
-    <div style='padding-right: 40px;text-align: right;'>
-      <span class='today_date'><%= @today.strftime('%m.%d.%Y')%></span>
-      <span style='font-size: 18px;'>today</span>
+  <div id="" style='border-bottom: 1px solid #e2e2e2; padding: 30px 0 15px 0;'>
+    <div class='one_third'>
+      <div style='padding-right: 40px;text-align: right;'>
+        <span class='today_date'><%= @today.strftime('%m.%d.%Y')%></span>
+        <span style='font-size: 18px;'>today</span>
+      </div>
     </div>
-  </div>
-
-  <div class='three_fifths'>
-    <div style='padding-left: 40px;'>
-      <span style='font-size: 18px;'>tomorrow</span>
-      <span class='tomorrow_date'><%= @tomorrow.strftime('%m.%d.%Y')%></span>      
+  
+    <div class='three_fifths'>
+      <div style='padding-left: 40px;'>
+        <span style='font-size: 18px;'>tomorrow</span>
+        <span class='tomorrow_date'><%= @tomorrow.strftime('%m.%d.%Y')%></span>      
+      </div>
     </div>
-  </div>
     
-  
-  <br style='clear:both'/>
-  
-</div>
+    <br style='clear:both'/>
+    
+  </div>
 
-<div>
 
   <div class='one_third'>
     <div id='today_tasks_wrapper' style='padding-right: 40px; text-align: right;'>
@@ -191,6 +175,10 @@
       <% end %>
     </div>
     <br style='clear:both'/>
+
+    <div id="today_empty" style='padding-right: 40px; text-align:right;<%= "display: none" unless @today_tasks.empty? %>;'>
+      <span style='font-size:48px;color: #EFEEEF'>nothing for today. <i>great!</i></span>
+    </div>
   </div><!-- #today_tasks_wrapper -->
 
   <div class='three_fifths'>
@@ -199,7 +187,11 @@
         <%= render :partial => 'tasks/tomorrow_item', :locals => { :task => task } %>
       <% end %>
     </div><!-- #tomorrow_tasks_wrapper -->
+    <%#= @tomorrow_tasks.inspect %>
+    <div id="tomorrow_empty" style='padding-left: 40px; <%= "display: none" unless @tomorrow_tasks.empty? %>;'>
+      <span style='font-size:48px;color: #EFEEEF'>nothing for tomorrow. <i>love</i> it!</span>
+    </div>
+    
   </div>
 
-
-</div>
+</div><!-- #task_wrapper -->

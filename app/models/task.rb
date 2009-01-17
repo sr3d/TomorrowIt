@@ -5,23 +5,25 @@ class Task < ActiveRecord::Base
   
   def self.find_active_tasks_for_user( user_id )
     Task.find(:all, 
-      :conditions => [ 'user_id = ? AND due_date BETWEEN ? AND ?', 
+      :conditions => [ 'user_id = ? AND due_date >= ? AND due_date < ?', 
         user_id,
-        Time.now.to_date.to_s(:db),
-        1.day.from_now.to_s(:db)
+        Time.now.to_date,
+        Time.now.to_date + 2
       ] )
   end
   
-  
+    
   def self.find_temp_tasks( task_ids )
     return [] if task_ids.nil? or task_ids.empty?
     Task.find(:all, 
-      :conditions => [ '( user_id IS NULL AND id IN (?) ) AND ( due_date >= ? AND due_date < ? )', 
+      :conditions => [ 
+        '( user_id IS NULL AND id IN (?) ) AND ( due_date >= ? AND due_date < ? )
+          AND done_date IS NULL', 
         task_ids,
         Time.now.to_date,
         Time.now.to_date + 2
       ],
-      :order => 'created_at DESC'  )    
+      :order => 'created_at DESC'  )
   end
   
   
