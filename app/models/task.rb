@@ -30,10 +30,13 @@ class Task < ActiveRecord::Base
     task_ids ||= []
     return if task_ids.empty? or user.new_record?
     
-    self.connection.execute( ( 
+    task_ids = task_ids.collect{ |task_id| ActiveRecord::Base.sanitize( task_id.to_i ) }.join(',')
+    #task_ids = Task.find(:all, :conditions => [ "id IN (?) AND user_id IS NULL", task_ids ], :select => [:id] ).collect{ |task| task.id }.compact
+    self.connection.execute(
       %!UPDATE tasks 
-      SET user_id = #{user.id} AND updated_at = NOW() 
-      WHERE id IN ( #{ ActiveRecord::Base.sanitize( task_ids.join(",") ) } ) AND user_id IS NULL!) )
+      SET user_id = #{user.id},  updated_at = NOW() 
+      WHERE id IN ( #{ task_ids } ) AND user_id IS NULL!
+    )
   end
   
   

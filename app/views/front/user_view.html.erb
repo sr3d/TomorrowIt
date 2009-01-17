@@ -10,7 +10,7 @@
           <tr>
             <td style='width: 740px; border: 1px solid #959595; background-color: #ffffd7; height: 35px;'>
                 <div style='padding: 5px'>
-                  <%= form.text_field :name, :value => 'try me free!   add something to do for tomorrow', :class => 'front_new_item' %>  
+                  <%= form.text_field :name, :value => 'try me free!   add something to do for tomorrow', :class => 'front_new_item', :tabindex => 1 %>  
                 </div>
               </div>
             </td>
@@ -24,7 +24,7 @@
             
           <tr>
             <td>
-              <%= form.text_field :description, :value => 'some description', :class => '' %>  
+              NOTE <%= form.text_field :description, :value => 'some description', :class => 'item_description', :tabindex => 2 %>  
             </td>
             <td style='width: 5px;'></td>
             <td style=''>

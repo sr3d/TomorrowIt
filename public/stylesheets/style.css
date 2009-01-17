@@ -111,8 +111,10 @@ div.autocomplete ul li
 { background-color: #ff0071; }
 
 
-.front_new_item
-{  font-size: 18px; width: 730px;background-color: transparent; border: 0px; }
+input.front_new_item
+{ font-size: 18px; width: 730px;background-color: transparent; border: 0px; }
+input.item_description
+{ border: 0px; font-size: 14px; width: 700px; background-color: }
 
 #signup_form_wrapper .textbox
 { border: 0px; background-color: #f4f4f4; width: 150px; padding: 5px; margin: 5px 0px; }

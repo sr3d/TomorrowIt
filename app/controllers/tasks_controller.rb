@@ -8,20 +8,16 @@ class TasksController < ApplicationController
   def create
     return if params[:task][:name].blank?
     
-    @task = Task.new( :name => params[:task][:name].strip, 
-                      :description => params[:task][:description].strip )
-    if logged_in? 
-      @task.user_id = current_user.id 
-    end
+    @task = Task.new( :name => params[:task][:name].strip )
+    @task.description = params[:task][:description].strip unless params[:task][:description].nil? 
+    @task.user_id = current_user.id if logged_in?
     
     @task.save!
     
-    if logged_in? 
-      append_task_to_anonymous_cookies @task  
+    unless logged_in? 
+      append_task_to_anonymous_cookies @task
     end  
-    
-    
-    
+
     respond_to do |format|
       format.html
       
@@ -104,6 +100,9 @@ class TasksController < ApplicationController
     @task.due_date= Time.now.to_date
     
     success = @task.save if ( logged_in? and @task.user_id == current_user.id ) or cookies_task_ids.include?( params[:id] )
+    
+    logger.debug ( cookies_task_ids.include?( params[:id] ) )
+    
     if success
       respond_to do |format|
         format.html { redirect_to :controller => "front", :action => "index"}
@@ -122,7 +121,11 @@ class TasksController < ApplicationController
         end # js
         
       end # respond_to
+  
+    else
+      render :text => 'failed'
     end
+  
     
   end
   
