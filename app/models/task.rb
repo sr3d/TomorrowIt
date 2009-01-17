@@ -26,6 +26,17 @@ class Task < ActiveRecord::Base
       :order => 'created_at DESC'  )
   end
   
+  def self.associate_temp_tasks_to_user( task_ids, user )
+    task_ids ||= []
+    return if task_ids.empty? or user.new_record?
+    
+    self.connection.execute( ( 
+      %!UPDATE tasks 
+      SET user_id = #{user.id} AND updated_at = NOW() 
+      WHERE id IN ( #{ ActiveRecord::Base.sanitize( task_ids.join(",") ) } ) AND user_id IS NULL!) )
+  end
+  
+  
   
   def set_due_date( due_date = nil )
     self.due_date = due_date.nil? ? ( Time.now.to_date + 1 ) : due_date.to_date
@@ -35,5 +46,7 @@ class Task < ActiveRecord::Base
     self.done_date = Time.now.to_date
     self.save!
   end
+  
+  
   
 end

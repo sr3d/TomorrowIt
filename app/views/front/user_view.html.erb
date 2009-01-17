@@ -1,2 +1,45 @@
-userview
-is userview? = <%= @is_userview %>
+  <div id="main_content_padding" style="padding: 10px 30px;">
+    <div >
+      <span id="tomorrow_it">tomorrow it</span> 
+      <span id="subtag">&nbsp;&nbsp;&nbsp;start your tomorrow today</span>
+    </div>
+
+    <div id="add_item_form" style='padding: 20px 0;'>
+      <% remote_form_for :task, :url => tasks_path, :html => { :id => 'new_task_form' }do |form| %>
+        <table border="0" cellspacing="0" cellpadding="0" width="890px">
+          <tr>
+            <td style='width: 740px; border: 1px solid #959595; background-color: #ffffd7; height: 35px;'>
+                <div style='padding: 5px'>
+                  <%= form.text_field :name, :value => 'try me free!   add something to do for tomorrow', :class => 'front_new_item' %>  
+                </div>
+              </div>
+            </td>
+            <td style='width: 5px;'></td>
+            <td style='background: #ff0071'>
+              <a href="#" 
+                onclick="new Ajax.Request('/tasks', {asynchronous:true, evalScripts:true, parameters:Form.serialize('new_task_form')}); return false;"
+                style='display: block; color: white; background-color: #ff0071; text-align: center; font-size: 18px;border: 1px solid #ff0071;'>tmr it</a>
+            </td>
+          </tr>
+            
+          <tr>
+            <td>
+              <%= form.text_field :description, :value => 'some description', :class => '' %>  
+            </td>
+            <td style='width: 5px;'></td>
+            <td style=''>
+            </td>
+          </tr>
+            
+        </table>
+      <% end %>
+      <br style='clear:both'/>
+    </div>
+
+    
+    <br style='clear:both'/>
+  </div><!-- #main_content_padding -->
+
+<div id="tasks_wrapper" style='' >
+  <%= render :partial => 'tasks' %>
+</div><!-- #task_wrapper -->

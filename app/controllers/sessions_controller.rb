@@ -50,6 +50,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    clear_cookies_task_ids if logged_in?
     logout_killing_session!
     flash[:notice] = "You have been logged out."
     redirect_back_or_default('/')

@@ -8,9 +8,19 @@ class TasksController < ApplicationController
   def create
     return if params[:task][:name].blank?
     
-    @task = Task.new( :name => params[:task][:name].strip )
+    @task = Task.new( :name => params[:task][:name].strip, 
+                      :description => params[:task][:description].strip )
+    if logged_in? 
+      @task.user_id = current_user.id 
+    end
+    
     @task.save!
-    append_task_to_anonymous_cookies @task
+    
+    if logged_in? 
+      append_task_to_anonymous_cookies @task  
+    end  
+    
+    
     
     respond_to do |format|
       format.html
@@ -44,7 +54,7 @@ class TasksController < ApplicationController
     @task = Task.find( params[:id] )
 
     # only allow anonymous 
-    if @task.user_id.nil?
+    if ( @task.user_id.nil? and cookies_task_ids.include? @task.id ) or @task.user_id = current_user.id
       @task.done!
       
       respond_to do |format|
@@ -126,8 +136,4 @@ protected
     cookies[ :temp_tasks ] = { :value => task_ids.join( ',' ), :expires => 999.days.from_now }
   end
   
-  def cookies_task_ids
-    cookies[:temp_tasks].nil? ? [] : cookies[:temp_tasks].split(',')
-  end
-
 end

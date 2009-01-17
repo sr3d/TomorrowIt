@@ -2,6 +2,7 @@ class FrontController < ApplicationController
   
   def index
     if logged_in?
+      logger.debug "logged in user: #{current_user}"
       process_for_authenticated_user
       render :action => 'user_view', :layout => 'authenticated_layout'
     else
@@ -15,20 +16,20 @@ protected
 
   def process_for_authenticated_user
     @tasks = Task.find_active_tasks_for_user current_user.id
+    process_tasks
   end
   
   def process_for_anonymous_user
-    @task_ids = get_temp_task_ids_from_cookies
+    @task_ids = cookies_task_ids
     @tasks = @task_ids.empty? ? [] : Task.find_temp_tasks( @task_ids )
-    
+    process_tasks
+  end
+
+  def process_tasks
     @today, @tomorrow = Time.now.to_date, (Time.now.to_date + 1.day)
     
     @today_tasks = @tasks.collect{ |task| task if task.due_date.to_date == @today }.compact
     @tomorrow_tasks = @tasks.collect{ |task| task if task.due_date.to_date == @tomorrow }.compact
-    
-    #logger.error @tomorrow.inspect
-    #logger.error @tomorrow_tasks.inspect
-
   end
 
 end

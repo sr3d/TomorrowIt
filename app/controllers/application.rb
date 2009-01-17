@@ -20,11 +20,32 @@ protected
     self.current_user = user
     new_cookie_flag = (params[:remember_me] == "1")
     handle_remember_cookie! new_cookie_flag
-    flash[:notice] = "Logged in successfully"
+    associate_temp_tasks_to_user
+    
+    #flash[:notice] = "Logged in successfully"
   end
   
-  def get_temp_task_ids_from_cookies
+  def cookies_task_ids
     cookies[:temp_tasks ].nil? ? [] : cookies[:temp_tasks].split(',')
+  end
+
+  def cookies_task_ids=( new_value)
+    cookies[:temp_tasks ] = new_value
+  end
+
+  
+  def associate_temp_tasks_to_user
+    return if !logged_in? or cookies_task_ids.empty?
+    logger.debug 'associating tasks'
+    Task.associate_temp_tasks_to_user( cookies_task_ids, current_user )
+    # clear the 
+    logger.debug cookies_task_ids.inspect
+    clear_cookies_task_ids
+  end
+  
+  
+  def clear_cookies_task_ids
+    cookies.delete :temp_tasks
   end
   
 end

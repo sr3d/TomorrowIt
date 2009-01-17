@@ -30,17 +30,21 @@
 				<div id="content_container">
 					<!-- Content -->
 					<div id="content_padding">
-            
+					  
+            <div style="height: 50px;">
+  		        <% if flash[:notice] -%>
+  	            <div id="notice" style="background-color: yellow; padding: 10px;text-align:center;"><%= flash[:notice] -%></div>
+  	            
+  		        <% end -%>
+  
+  		        <% if flash[:error] -%>
+  	            <div id="error" style="background-color: red; padding: 10px; color: white; text-align:center;"><%= flash[:error] -%></div>
+  		        <% end -%>
+            </div>
+					  
 				    <%= yield %>
 	
-		        <% if flash[:notice] -%>
-		            <div id="notice" style="background-color: yellow; padding: 10px;"><%= flash[:notice] -%></div>
-		        <% end -%>
 
-		        <% if flash[:error] -%>
-		            <div id="error" style="background-color: red; padding: 10px; "><%= flash[:error] -%></div>
-		        <% end -%>
-	          
 		        <div style='clear:both'/>
 					</div> <!-- content_padding -->
 					<div style='clear:both'/>
