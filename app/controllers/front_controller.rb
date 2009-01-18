@@ -1,4 +1,5 @@
 class FrontController < ApplicationController
+  layout 'unauthenticated_layout'
   
   def index
     if logged_in?
@@ -11,6 +12,11 @@ class FrontController < ApplicationController
     end
   end
   
+
+ 
+  def about;end
+  def help;end
+
 
 protected 
 

@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   def new
   end
-
+ 
   def create
     return if params[:task][:name].blank?
     

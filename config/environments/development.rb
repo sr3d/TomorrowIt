@@ -20,7 +20,7 @@ ActionMailer::Base.smtp_settings = {
   :address  => "localhost",
   :port  => 25, 
   :domain  => "www.tomorrowit.com",
-  :user_name  => 'root'
+  :user_name  => 'root',
   :password  => "123456",
   :authentication  => :login
 } 

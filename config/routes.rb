@@ -5,6 +5,9 @@ ActionController::Routing::Routes.draw do |map|
   map.signup      '/signup', :controller => 'users', :action => 'new'
   map.activate    '/activate/:activation_code', :controller => 'users', 
                   :action => 'activate', :activation_code => nil 
+  map.watch       'about', :controller => 'front', :action => 'about'
+  map.watch       'help', :controller => 'front', :action => 'help'
+
   map.resources :users, :collection => { :new_ical_url => :post }
   map.resources :tasks, :member => { :done => :post, :tomorrow_it => :post, :today_it => :post }
   map.resource :session
@@ -12,7 +15,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :ical
 
   map.connect 'ical/:token', :controller => 'ical', :action => 'index'
-  map.connect 'ical/:token.ics', :controller => 'ical', :action => 'index'  
+  map.connect 'ical/:token.ics', :controller => 'ical', :action => 'index'
+  
   
   # The priority is based upon order of creation: first created -> highest priority.
 
