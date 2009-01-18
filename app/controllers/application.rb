@@ -26,11 +26,12 @@ protected
   end
   
   def cookies_task_ids
-    cookies[:temp_tasks ].nil? ? [] : cookies[:temp_tasks].split(',')
+    @cookies_task_ids ||= ( cookies[:temp_tasks ].nil? ) ? [] : cookies[:temp_tasks].split(',').collect{ |task_id| task_id.to_i }
   end
 
   def cookies_task_ids=( new_value)
     cookies[:temp_tasks ] = new_value
+    @cookies_task_ids = nil
   end
 
   

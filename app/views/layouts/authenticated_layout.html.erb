@@ -23,19 +23,13 @@
 
 <body id="body_container">
 	<div id="page_container">
-
-		<div id="top_menu_container">
-			Authenticated Layout
-			
-			<%= link_to 'Log out', '/logout' %>
-		</div>
-		
 		<div id="center_container">
 			<div id="center_padding">
 				
 				<div id="content_container">
 					<!-- Content -->
 					<div id="content_padding">
+
 		        <% if flash[:notice] -%>
 		          <div id="notice" style="background-color: yellow; padding: 10px;"><%= flash[:notice] -%></div>
 		        <% end -%>
@@ -43,6 +37,19 @@
 		        <% if flash[:error] -%>
 		          <div id="error" style="background-color: red; padding: 10px; "><%= flash[:error] -%></div>
 		        <% end -%>
+
+          
+        		<div id="top_menu_wrapper">
+        		  <div id="top_menu">
+          	    <a href="/users/edit/<%= current_user.id %>" class='item_action_link small' style='margin-left: 30px;'>your account</a>
+          	    <a href="/logout" class='item_action_link small' style='margin-left: 30px;'>log out</a>
+        		  </div>
+        		</div>
+
+            <div style='padding: 10px 30px 0px 30px;;'>
+              <a href="/"><span id="tomorrow_it">tomorrow it</span></a>
+              <span id="subtag">&nbsp;&nbsp;&nbsp;start your tomorrow today</span>
+            </div>
 
 				    <%= yield %>
 	

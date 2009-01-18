@@ -4,10 +4,12 @@ body
 #page_container
 { width: 100%; }
 
-#top_menu_container
+#top_menu_wrapper
 { }
 	#top_menu
-	{margin: auto; text-align: right; width: 980px; }	
+	{text-align: right; margin-right: 90px;}	
+	#top_menu a
+	{ margin-left: 30px; }
 
 
 	#center_container

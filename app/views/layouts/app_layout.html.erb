@@ -49,17 +49,10 @@
 					</div> <!-- content_padding -->
 					<div style='clear:both'/>
 				</div><!-- #content_container -->
-				
-				<!-- Footer -->
-				<%#= render :partial => 'shared/footer' -%>
-
 			</div><!-- #center_padding -->
 		</div><!-- #center_container -->
+	  <%= render :partial => 'shared/footer.html.erb' %>  	
 	</div><!-- #page_container -->
-	
-  
-  <%= render :partial => 'shared/footer.html.erb' %>  	
-	
   <script type="text/javascript">window._token = '<%= form_authenticity_token %>';</script>
 
 </body>

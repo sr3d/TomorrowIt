@@ -48,13 +48,16 @@ class TasksController < ApplicationController
 
   def done
     @task = Task.find( params[:id] )
-
+    return unless @task
+    logger.debug cookies_task_ids.inspect
+    logger.debug cookies_task_ids.include? @task.id
+    
     # only allow anonymous 
-    if ( @task.user_id.nil? and cookies_task_ids.include? @task.id ) or @task.user_id = current_user.id
+    if ( @task.user_id.nil? and cookies_task_ids.include? @task.id ) or (logged_in? and @task.user_id == current_user.id )
       @task.done!
       
       respond_to do |format|
-        format.html
+        format.html { redirect_to "/" }
         
         format.js do
           render :update do |page|
@@ -64,15 +67,18 @@ class TasksController < ApplicationController
         end #js
 
       end
-
-    end
+    else
+      render :text => :failed
+    end # if task updatable
+    
+    
   end
   
   def tomorrow_it
     @task = Task.find( params[:id] )
     @task.due_date= Time.now.to_date + 1
     
-    success = @task.save if ( logged_in? and @task.user_id == current_user.id ) or cookies_task_ids.include?( params[:id] )
+    success = @task.save if ( logged_in? and @task.user_id == current_user.id ) or cookies_task_ids.include?( params[:id].to_i )
     if success
       respond_to do |format|
         format.html { redirect_to :controller => "front", :action => "index"}
@@ -99,10 +105,7 @@ class TasksController < ApplicationController
     @task = Task.find( params[:id] )
     @task.due_date= Time.now.to_date
     
-    success = @task.save if ( logged_in? and @task.user_id == current_user.id ) or cookies_task_ids.include?( params[:id] )
-    
-    logger.debug ( cookies_task_ids.include?( params[:id] ) )
-    
+    success = @task.save if ( logged_in? and @task.user_id == current_user.id ) or cookies_task_ids.include?( params[:id].to_i )
     if success
       respond_to do |format|
         format.html { redirect_to :controller => "front", :action => "index"}

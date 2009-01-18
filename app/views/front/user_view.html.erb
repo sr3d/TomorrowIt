@@ -1,51 +1,46 @@
-  <div id="main_content_padding" style="padding: 10px 30px;">
-    <div >
-      <span id="tomorrow_it">tomorrow it</span> 
-      <span id="subtag">&nbsp;&nbsp;&nbsp;start your tomorrow today</span>
-    </div>
+<div id="main_content_padding" style="padding: 0px 30px;">
+  <div id="add_item_form" style='padding: 20px 0;'>
+    <% remote_form_for :task, :url => tasks_path, :html => { :id => 'new_task_form' }do |form| %>
+      <table border="0" cellspacing="0" cellpadding="0" width="890px">
+        <tr>
+          <td style='width: 740px; border: 1px solid #959595; background-color: #ffffd7; height: 35px;'>
+              <div style='padding: 5px'>
+                <%= form.text_field :name, :value => 'try me free!   add something to do for tomorrow', :class => 'front_new_item', :tabindex => 1 %>  
+              </div>
+            </div>
+          </td>
+          <td style='width: 5px;'></td>
+          <td>
+            <%= submit_tag 'tmr it', :style => "display: block; color: white; background-color: #ff0071; text-align: center; font-size: 18px;border: 3px solid #ff0071; background: #ff0071; height: 30px; width: 120px;", :tabindex => 3 %>
+          </td>
+        </tr>
+          
+        <tr>
+          <td>
+            <div style='margin-top: 5px'>
+              <div style='float:left;font-size: 10px; padding: 7px;'>NOTE</div> 
 
-    <div id="add_item_form" style='padding: 20px 0;'>
-      <% remote_form_for :task, :url => tasks_path, :html => { :id => 'new_task_form' }do |form| %>
-        <table border="0" cellspacing="0" cellpadding="0" width="890px">
-          <tr>
-            <td style='width: 740px; border: 1px solid #959595; background-color: #ffffd7; height: 35px;'>
-                <div style='padding: 5px'>
-                  <%= form.text_field :name, :value => 'try me free!   add something to do for tomorrow', :class => 'front_new_item', :tabindex => 1 %>  
+              <div style='margin-left: 50px; background-color: #EFEEEF; '>
+                <div style='padding: 5px;'>
+                  <%= form.text_field :description, :value => 'some description', :class => 'item_description', :tabindex => 2 %>  
                 </div>
               </div>
-            </td>
-            <td style='width: 5px;'></td>
-            <td>
-              <%= submit_tag 'tmr it', :style => "display: block; color: white; background-color: #ff0071; text-align: center; font-size: 18px;border: 3px solid #ff0071; background: #ff0071; height: 30px; width: 120px;", :tabindex => 3 %>
-            </td>
-          </tr>
+            </div><!-- margin-->
             
-          <tr>
-            <td>
-              <div style='margin-top: 5px'>
-                <div style='float:left;font-size: 10px; padding: 7px;'>NOTE</div> 
-
-                <div style='margin-left: 50px; background-color: #EFEEEF; '>
-                  <div style='padding: 5px;'>
-                    <%= form.text_field :description, :value => 'some description', :class => 'item_description', :tabindex => 2 %>  
-                  </div>
-                </div>
-              </div><!-- margin-->
-              
-            </td>
-            <td style='width: 5px;'></td>
-            <td style=''>
-            </td>
-          </tr>
-            
-        </table>
-      <% end %>
-      <br style='clear:both'/>
-    </div>
-
-    
+          </td>
+          <td style='width: 5px;'></td>
+          <td style=''>
+          </td>
+        </tr>
+          
+      </table>
+    <% end %>
     <br style='clear:both'/>
-  </div><!-- #main_content_padding -->
+  </div>
+
+  
+  <br style='clear:both'/>
+</div><!-- #main_content_padding -->
 
 <div id="tasks_wrapper" style='' >
   <%= render :partial => 'tasks' %>

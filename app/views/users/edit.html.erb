@@ -1,0 +1,42 @@
+<div id="main_content_padding" style='padding: 50px 30px;'>
+
+  <div class='page_title'>
+    update profile
+  </div>
+
+
+  <% form_for @user, :url => user_path(@user), :html => { :id => 'update_form' } do |form|  %>
+    <div class='form_label'>
+      email  
+    </div> 
+    <div class='form_field_wrapper'>
+      <%= form.text_field :email, :class => 'textbox' %>
+      <%= error_message_on :user, :email %>
+    </div> 
+
+    <br style='clear:both'/>
+    <div class='form_label'>
+      password
+     <br/><span class='small'>(leave blank to keep current password)</span>      
+    </div> 
+    <div class='form_field_wrapper'>
+      <%= form.password_field :password, :class => 'textbox' %>
+      <%= error_message_on :user, :password %>
+    </div>     
+    
+    <br style='clear:both'/>
+    <div class='form_label'>
+      password  
+    </div> 
+    <div class='form_field_wrapper'>
+      <%= form.password_field :password_confirmation, :class => 'textbox' %>
+      <%= error_message_on :user, :password_confirmation %>
+    </div>        
+    
+    <div class='form_field_wrapper'>
+      <%= submit_tag 'Update'%>
+    </div>        
+
+  <% end %>
+  
+</div>

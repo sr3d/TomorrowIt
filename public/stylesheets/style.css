@@ -1,7 +1,7 @@
 .floatClear:after { clear:both; content:"."; display:block; height:0pt; visibility:hidden; }
 
-.fieldWithErrors
-{ border: 1px solid red; }
+.fieldWithErrors input
+{ border: 1px solid red !important; }
 
 a
 { text-decoration: none; color: #6f007f; }
@@ -123,3 +123,13 @@ input.item_description
 .item_action_link:hover
 { background-color: #FF0071; color: white; }
 
+.page_title
+{ font-size: 18px; margin-bottom: 20px; padding-bottom: 5px; border-bottom: 1px solid #EFEEEF; }
+
+.form_label
+{ float: left; width: 150px; font-weight: bold; text-align: right; padding-top: 10px; }
+.form_field_wrapper
+{ margin-left: 170px; }
+
+#update_form .textbox
+{ border: 1px solid transparent; background-color: #f4f4f4; width: 250px; padding: 5px; margin: 5px 0px; }
