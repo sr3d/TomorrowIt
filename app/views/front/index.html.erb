@@ -1,4 +1,3 @@
-
 <div class='wrapper'>
 
   <div id="login_form_wrapper" style='float:right; position: relative; width: 295px;'>
@@ -50,19 +49,31 @@
       </div>
   
       <div id="add_item_form" style='padding: 50px 0;'>
-        <% remote_form_for :task, :url => tasks_path, :html => { :id => 'new_task_form' }do |form| %>
+        <% default_value = "try me free! add a task for tomorrow" %>
+        <% remote_form_for :task, :url => tasks_path, :html => { :id => 'new_task_form' },
+            :condition => "!($F('task_name').strip().blank()) && $F('task_name').strip() != '#{default_value}' ",
+            :success => 'resetTextBoxes();' do |form| %>
           <table border="0" cellspacing="0" cellpadding="0" width="890px">
             <tr>
               <td style='width: 740px; border: 1px solid #959595; background-color: #ffffd7; height: 35px;'>
                   <div style='padding: 5px'>
-                    <%= form.text_field :name, :value => 'try me free!   add something to do for tomorrow', :class => 'front_new_item' %>  
+                    <%= form.text_field :name, :value => default_value, :class => 'front_new_item' %>  
+                    <script type="text/javascript" charset="utf-8">
+                    ( function() { 
+                        textboxToggleValue( 'task_name', '<%= default_value %>' );
+                    } )();
+                    var resetTextBoxes = function(){ 
+                      $('task_name').value = '';
+                      $('task_name').focus();
+                    }
+                    </script>
                   </div>
                 </div>
               </td>
               <td style='width: 5px;'></td>
               <td style='background: #ff0071'>
                 <a href="#" 
-                  onclick="new Ajax.Request('/tasks', {asynchronous:true, evalScripts:true, parameters:Form.serialize('new_task_form')}); return false;"
+                  onclick="if (!($F('task_name').strip().blank()) && $F('task_name').strip() != '<%= default_value %>' ) { new Ajax.Request('/tasks', {asynchronous:true, evalScripts:true, parameters:Form.serialize(this)}); }; return false;"
                   style='display: block; color: white; background-color: #ff0071; text-align: center; font-size: 18px;border: 1px solid #ff0071;'>tmr it</a>
               </td>
             </tr>

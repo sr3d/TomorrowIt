@@ -31,5 +31,23 @@ function checkForEmptyTasks()
   {
     $('tomorrow_empty').show();
   }
-}
+};
 
+function textboxToggleValue( element, defaultValue ) {
+  element = $( element );
+  defaultValue = defaultValue.strip();
+  if ( element.value.blank() ) 
+  {
+    element.value = defaultValue;
+  }
+  
+  var onFocus = function() { 
+    if( element.value.strip() == defaultValue ) 
+      element.value = ''; 
+  }
+  var onBlur = function() {
+    if( element.value.blank() ) 
+      element.value = defaultValue; 
+  }
+  element.observe('focus', onFocus ).observe( 'blur', onBlur );
+}

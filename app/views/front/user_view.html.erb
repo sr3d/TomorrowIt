@@ -1,11 +1,16 @@
 <div id="main_content_padding" style="padding: 0px 30px;">
   <div id="add_item_form" style='padding: 20px 0;'>
-    <% remote_form_for :task, :url => tasks_path, :html => { :id => 'new_task_form' }do |form| %>
+    <% default_value = "something to do for tomorrow" %>
+    <% default_description_value = "your note for the task..." %>
+    <% remote_form_for :task, :url => tasks_path, :html => { :id => 'new_task_form' },
+          :condition => "!($F('task_name').strip().blank()) && $F('task_name').strip() != '#{default_value}' ",
+          :before => "if( $F('task_description').strip() == '#{default_description_value}' ){ $('task_description').value = '';}",
+          :success => "resetTextBoxes();" do |form| %>
       <table border="0" cellspacing="0" cellpadding="0" width="890px">
         <tr>
           <td style='width: 740px; border: 1px solid #959595; background-color: #ffffd7; height: 35px;'>
               <div style='padding: 5px'>
-                <%= form.text_field :name, :value => 'try me free!   add something to do for tomorrow', :class => 'front_new_item', :tabindex => 1 %>  
+                <%= form.text_field :name, :value => default_value, :class => 'front_new_item', :tabindex => 1 %>
               </div>
             </div>
           </td>
@@ -22,11 +27,21 @@
 
               <div style='margin-left: 50px; background-color: #EFEEEF; '>
                 <div style='padding: 5px;'>
-                  <%= form.text_field :description, :value => 'some description', :class => 'item_description', :tabindex => 2 %>  
+                  <%= form.text_field :description, :value => default_description_value, :class => 'item_description', :tabindex => 2 %>  
                 </div>
               </div>
             </div><!-- margin-->
-            
+            <script type="text/javascript" charset="utf-8">
+            ( function() { 
+              textboxToggleValue( 'task_name', '<%= default_value %>' );
+              textboxToggleValue( 'task_description', '<%= default_description_value %>' );
+            }() );
+            var resetTextBoxes = function(){ 
+              $('task_name').value = '';
+              $('task_description').value = '<%= default_description_value %>';
+              $('task_name').focus();
+            }
+            </script>
           </td>
           <td style='width: 5px;'></td>
           <td style=''>

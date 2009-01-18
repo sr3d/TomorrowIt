@@ -49,8 +49,6 @@ class TasksController < ApplicationController
   def done
     @task = Task.find( params[:id] )
     return unless @task
-    logger.debug cookies_task_ids.inspect
-    logger.debug cookies_task_ids.include? @task.id
     
     # only allow anonymous 
     if ( @task.user_id.nil? and cookies_task_ids.include? @task.id ) or (logged_in? and @task.user_id == current_user.id )

@@ -23,7 +23,7 @@ desc "Set live application variables"
 task :live do
   role :app, "www.tomorrowit.com"
   role :web, "www.tomorrowit.com"
-  role :db,  "db01.tomorrowit.com", :primary => true
+  role :db,  "www.tomorrowit.com", :primary => true
   set :deploy_to, "/var/www/sites/www.tomorrowit.com/#{application}"
   #set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
   set :app_database, "#{application}"
@@ -66,7 +66,7 @@ CMD
   # Make sure the config files are good.  Logrotate barks about dos linebreaks
   run "dos2unix #{release_path}/config/*.*"
   # change the permission of the shell scripts
-  run "dos2unix #{release_path}/script/*.sh;chmod +x #{release_path}/script/*.sh"
+  # run "dos2unix #{release_path}/script/*.sh;chmod +x #{release_path}/script/*.sh"
   
 end
 
