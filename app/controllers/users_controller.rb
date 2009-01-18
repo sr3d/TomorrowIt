@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   layout 'authenticated_layout'  
-  before_filter :login_required, :only => [ :edit ]
+  before_filter :login_required, :except => [ :forgot_password, :new, :index, :create  ]
   
   def index
     redirect_to :controller => 'front', :action => 'index' and return
@@ -35,8 +35,24 @@ class UsersController < ApplicationController
       # flash[:error]  = "Something wen"
       render :action => 'edit'
     end
+  end
+  
+  def new_ical_url
+    current_user.new_token!
 
-      
+    respond_to do |format|
+      format.js do 
+        render :update do |page|
+          page.replace_html 'ical_url', link_to( user_unique_ical_url, user_unique_ical_url )
+           page.visual_effect :highlight, "ical_url", :duration => 0.6
+        end
+      end
+
+      # HTML 
+      format.html do
+        redirect_to :controller => "front", :action => "index" and return
+      end
+    end #respond
   end
  
   def create

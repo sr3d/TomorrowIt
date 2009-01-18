@@ -41,6 +41,11 @@ class User < ActiveRecord::Base
     # the existence of an activation code means they have not activated yet
     true
   end
+  
+  def new_token!
+    make_token
+    save!
+  end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #

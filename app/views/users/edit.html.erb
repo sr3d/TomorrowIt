@@ -1,7 +1,14 @@
 <div id="main_content_padding" style='padding: 50px 30px;'>
 
   <div class='page_title'>
-    update profile
+    <div style='float:left'>
+      update profile
+    </div>
+    
+    <div style='float:right; font-size: 14px;' >
+      <a href="/" class='colored'>go back</a>
+    </div>
+    <div style='clear:both'></div>
   </div>
 
 
@@ -35,8 +42,37 @@
     
     <div class='form_field_wrapper'>
       <%= submit_tag 'Update'%>
-    </div>        
-
+    </div>
   <% end %>
+  
+  
+
+  <div class='page_title' style='padding-top: 30px;'>
+    <%= image_tag 'calday.gif' %>&nbsp;&nbsp;iCal sharing
+  </div>
+
+  <div>
+    The iCal URL will let you synchronize your <span class='colored'><b>tomorrowit.com</b></span> account with Google calendar, iCal, or  Microsoft Outlook.
+    <br/>
+    <br/>
+    Don't share this URL with anyone.  It's yours.
+    <br/>
+    <br/>
+    <div id='ical_url'>
+      <a href="<%= user_unique_ical_url %>" target='_blank'>
+        <%= user_unique_ical_url %>
+      </a>
+    </div>
+    
+    <br/>
+    <br/>
+    Update the URL will invalidate the above link.  Remember to update your calendar clients as well.
+    <div id="name">
+      <%= link_to_remote 'Generate New URL', :url => new_ical_url_users_path, 
+            :confirm => 'are you sure?',
+            :html => { :class => 'big_link_button' } %>
+    </div>
+    
+  </div>  
   
 </div>

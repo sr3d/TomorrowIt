@@ -8,13 +8,6 @@ a
 a:hover
 { color: #0077A4; }
 
-h1
-{ font-size: 14px; font-weight: bold; }
-h2.milestone_title
-{ font-size: 14px; font-weight: bold; }
-h3
-{ font-size: 18px; }
-
 
 .date_wrapper { margin-bottom: 20px; }
   .date_header_wrapper{}
@@ -29,29 +22,6 @@ h3
     .today
     { background-color: white;}
 
-/* List Page */
-.list_container
-{ margin-bottom: 25px; }
-  .title
-  { font-size: 18px; color: #B140C3; padding-bottom: 3px; }
-  .list_description
-  { font-size: 11px; padding-top: 5px; }
-  .list_items
-  { margin-top: 10px;}
-    .list_item_container, .list_actions_container, .lists_no_item
-    { margin-left: 15px; padding: 7px; }
-    .list_actions_container .horizontal_list a, .list_actions_container .horizontal_list a:visited
-    { display: block; padding: 5px 10px; border: 1px solid #EEEEEE; font-size: 12px; font-weight: bold; color: #535353; }
-    .list_actions_container .horizontal_list a:hover
-    { background-color: #EEEEEE;}
-    
-
-
-.zoom_icon
-{ width: 11px; height: 11px; line-height: 11px; background: transparent url( '../images/icons/zoom.png' ) no-repeat top left; }
-
-.p
-{ padding-top: 10px; padding-bottom: 10px; }
   
 #tomorrow_it
 { font-size: 43px; color: #FF0071;}  
@@ -98,6 +68,11 @@ input.item_description
 .small
 { font-size: 10px; }
 
+a.big_link_button
+{ font-size: 14px; font-weight: bold; color: #ff0071; padding: 2px;}
+a.big_link_button:hover
+{ background-color: #ff0071; color: white; }
+
 /* tasks */
 .today_date
 { font-size: 10px; color: #a839b2; padding-right: 10px;}
@@ -133,3 +108,9 @@ input.item_description
 
 #update_form .textbox
 { border: 1px solid transparent; background-color: #f4f4f4; width: 250px; padding: 5px; margin: 5px 0px; }
+
+#ical_url
+{ font-size: 14px; font-weight: bold; padding: 10px; background-color: #f4f4f4 }
+
+.popup_wrapper
+{ border: 1px solid #FF0071; background-color: white; padding: 5px; }

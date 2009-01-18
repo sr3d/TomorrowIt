@@ -68,3 +68,5 @@ Rails::Initializer.run do |config|
 
   
 end
+
+require 'icalendar-1.0.2/lib/icalendar'

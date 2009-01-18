@@ -48,5 +48,5 @@ protected
   def clear_cookies_task_ids
     cookies.delete :temp_tasks
   end
-  
+
 end

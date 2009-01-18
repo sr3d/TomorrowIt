@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20090116043812) do
     t.integer  "user_id"
     t.string   "name",                            :null => false
     t.datetime "due_date"
+    t.datetime "done_date"
     t.boolean  "is_important", :default => false
     t.text     "description"
     t.datetime "created_at"
@@ -39,5 +40,6 @@ ActiveRecord::Schema.define(:version => 20090116043812) do
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+  add_index "users", ["token"], :name => "index_users_on_token", :unique => true
 
 end

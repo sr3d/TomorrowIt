@@ -5,10 +5,15 @@ ActionController::Routing::Routes.draw do |map|
   map.signup      '/signup', :controller => 'users', :action => 'new'
   map.activate    '/activate/:activation_code', :controller => 'users', 
                   :action => 'activate', :activation_code => nil 
-  map.resources :users
+  map.resources :users, :collection => { :new_ical_url => :post }
   map.resources :tasks, :member => { :done => :post, :tomorrow_it => :post, :today_it => :post }
   map.resource :session
+  
+  map.resource :ical
 
+  map.connect 'ical/:token', :controller => 'ical', :action => 'index'
+  map.connect 'ical/:token.ics', :controller => 'ical', :action => 'index'  
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
