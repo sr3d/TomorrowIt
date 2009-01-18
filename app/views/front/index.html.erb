@@ -26,7 +26,7 @@
     <div id="forgot_password_wrapper" style='float: right; text-align: right; margin-right: 50px;display:none'>
       <a href="javascript:void(0)" onclick="toggleForgotPasswordForm();" class='small'>forgot password?</a>
       <br/>
-      <div id="forgot_password_form_wrapper" style='' class='popup_wrapper'>
+      <div id="forgot_password_form_wrapper" style='display:none;' class='popup_wrapper'>
         <% remote_form_for :user, :url => { :controller => 'users', :action => 'forgot_password' } do |form| %>
           <div class='form_label' style='width:50px;'>email</div>
           <div style='margin-left: 60px;'><%= form.text_field :email, :class => 'general_textbox' %>
