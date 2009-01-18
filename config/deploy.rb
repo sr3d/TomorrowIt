@@ -10,22 +10,12 @@ set :user, "rails"
 set :group, "rails"
 
 
-desc "Staging server setup"
-task :staging do
-  role :web, "dev.tubecaption.com"
-  role :app, "dev.tubecaption.com"
-  role :db,  "dev.tubecaption.com", :primary => true
-  set :deploy_to, "/var/www/sites/dev.tubecaption.com/#{application}"
-  set :app_database, "dev_#{application}"
-end
-
 desc "Set live application variables"
 task :live do
   role :app, "www.tomorrowit.com"
   role :web, "www.tomorrowit.com"
   role :db,  "www.tomorrowit.com", :primary => true
   set :deploy_to, "/var/www/sites/www.tomorrowit.com/#{application}"
-  #set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
   set :app_database, "#{application}"
 end
 
@@ -67,7 +57,7 @@ CMD
   run "dos2unix #{release_path}/config/*.*"
   # change the permission of the shell scripts
   # run "dos2unix #{release_path}/script/*.sh;chmod +x #{release_path}/script/*.sh"
-  
+    
 end
 
 
