@@ -96,7 +96,35 @@ class UsersController < ApplicationController
 
   
   def forgot_password
+    @email = params[:user][:email]
+    success = @email && !!@email.match( Authentication::RE_EMAIL_OK )
     
+    @user = User.find_by_email( params[:user][:email] ) if success
+    success = @user && @user.reset_password! 
+
+    respond_to do |format|
+      format.html do 
+        if success
+          flash[:notice] = "please check your email for the new password"
+        else
+          flash[:notice] = "Could not find your user";
+        end
+        redirect_to :controller => "front", :action => "index"
+      end
+      
+      format.js do 
+        render :update do |page|
+          if success
+            page.alert( 'please check your email for the new password' );
+            page.hide "forgot_password_form_wrapper"
+            page.hide "forgot_password_wrapper"
+          else
+            page.alert( 'Could not find your user' )
+          end
+        end #render
+      end # js
+      
+    end #respond_to
   end
   
 

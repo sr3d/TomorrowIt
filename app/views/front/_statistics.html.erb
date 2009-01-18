@@ -1,0 +1,5 @@
+<div style=''>
+  serving <b><%= User.count %></b> users with <b><%= Task.count %></b> tasks since 2009.
+  <br/><%= Task.count_all_today_tasks %> tasks for today,
+  <%= Task.count_all_tomorrow_tasks %> tasks for tomorrow
+</div>

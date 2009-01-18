@@ -3,7 +3,7 @@ class CreateTasks < ActiveRecord::Migration
     create_table :tasks do |t|
       t.column :user_id, :integer
       t.column :name, :string, :limit => 255, :null => false
-      t.column :due_date, :datetime
+      t.column :due_date, :date
       t.column :done_date, :datetime
       t.column :is_important, :boolean, :default => false
       t.column :description, :text

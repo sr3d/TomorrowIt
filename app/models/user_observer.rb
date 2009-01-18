@@ -3,9 +3,13 @@ class UserObserver < ActiveRecord::Observer
     UserMailer.deliver_signup_notification(user)
   end
 
-  def after_save(user)
+  # def after_save(user)
+  #  UserMailer.deliver_activation(user) if user.recently_activated?
+  #end
   
-    UserMailer.deliver_activation(user) if user.recently_activated?
-  
+  def after_reset_password( user )
+    user.logger.debug 'calling after_reset_password'
+    UserMailer.deliver_password_reset(user)
   end
+  
 end

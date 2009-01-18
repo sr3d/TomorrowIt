@@ -37,7 +37,7 @@ a:hover
 .big_label
 { font-size: 18px; color: #FF0071;}
 .big_tag_line
-{ font-size: 18px;}
+{ font-size: 18px;padding-bottom: 3px; }
 
 #btnLogin:hover
 { background-color: #ff0071; }
@@ -114,3 +114,6 @@ a.big_link_button:hover
 
 .popup_wrapper
 { border: 1px solid #FF0071; background-color: white; padding: 5px; }
+
+.general_textbox
+{ border: 1px solid transparent; background-color: #f4f4f4; width: 150px; padding: 5px; margin: 5px 0px; }

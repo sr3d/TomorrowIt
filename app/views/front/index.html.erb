@@ -23,13 +23,18 @@
       </div>
     </div>
     
-    <div id="forgot_password_wrapper" style='float: right; text-align: right; margin-right: 50px;display:none;'>
+    <br style='clear:both'/>
+    <div id="forgot_password_wrapper" style='float: right; text-align: right; margin-right: 50px;display:none()'>
       <a href="javascript:void(0)" onclick="toggleForgotPasswordForm();" class='small'>forgot password?</a>
       <br/>
-      <div id="forgot_password_form_wrapper" style='display:none;'>
+      <div id="forgot_password_form_wrapper" style='' class='popup_wrapper'>
         <% remote_form_for :user, :url => { :controller => 'users', :action => 'forgot_password' } do |form| %>
-          email <%= form.text_field :email %>
-          <%= submit_tag 'send' %>
+          <div class='form_label' style='width:50px;'>email</div>
+          <div style='margin-left: 60px;'><%= form.text_field :email, :class => 'general_textbox' %>
+          </div>
+          <div style='margin-left: 60px; text-align: left;'>
+            <%= submit_tag 'reset password' %>
+          </div>    
         <% end %>
       </div>
     </div>
@@ -82,10 +87,14 @@
         </div><!-- .one_third -->
         
         <div class="one_third">
-          <div class='big_tag_line'>* simple 'n nimble todo's of tmr</div>
+          <div class='big_tag_line'>* simple 'n nimble todos of tmr</div>
           <div class='big_tag_line'>* talks to google cal, iCal, outlook</div>
           <div class='big_tag_line'>* set but don't forget</div>
           <div class='big_tag_line'>* love to be your homepage</div>
+          
+          <br/>
+          <%#= render :partial => 'statistics' %>
+          
         </div><!-- .one_third -->
 
         <div class="one_third" style='float:right;'>

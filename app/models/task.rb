@@ -49,6 +49,14 @@ class Task < ActiveRecord::Base
       token , Time.now.to_date, Time.now.to_date + 2.days ]
   end
   
+  def self.count_all_today_tasks
+    Task.count :conditions => "due_date = CURDATE()"
+  end
+  
+  def self.count_all_tomorrow_tasks
+    Task.count :conditions => "due_date = ADDDATE(CURDATE(), 1)"
+  end
+  
   def set_due_date( due_date = nil )
     self.due_date = due_date.nil? ? ( Time.now.to_date + 1 ) : due_date.to_date
   end
