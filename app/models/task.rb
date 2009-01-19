@@ -28,7 +28,7 @@ class Task < ActiveRecord::Base
   def self.find_tasks_for_date( user, due_date )
     return Task.find( :all ,
       :conditions => [ 
-        'user_id = ? AND ( due_date >= ? AND due_date < ? )',
+        'user_id = ? AND ( due_date >= ? AND due_date < ? ) AND done_date IS NULL',
         user.id, due_date, due_date + 1
     ] )
   end
@@ -38,7 +38,6 @@ class Task < ActiveRecord::Base
     return if task_ids.empty? or user.new_record?
     
     task_ids = task_ids.collect{ |task_id| ActiveRecord::Base.sanitize( task_id.to_i ) }.join(',')
-    #task_ids = Task.find(:all, :conditions => [ "id IN (?) AND user_id IS NULL", task_ids ], :select => [:id] ).collect{ |task| task.id }.compact
     self.connection.execute(
       %!UPDATE tasks 
       SET user_id = #{user.id},  updated_at = NOW() 
