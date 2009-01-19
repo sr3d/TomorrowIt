@@ -27,3 +27,12 @@ ActionMailer::Base.sendmail_settings = {
 }
 
 ActionMailer::Base.default_content_type = "text/html"
+
+
+
+# Miscellaneous
+$CURRENT_REVISION = if File.exists?( "#{RAILS_ROOT}/REVISION" )
+                        ( File.open( "#{RAILS_ROOT}/REVISION", 'r').read ).chomp
+                      else
+                        ''
+                      end
