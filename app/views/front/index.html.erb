@@ -73,7 +73,7 @@
               <td style='width: 5px;'></td>
               <td style='background: #ff0071'>
                 <a href="#" 
-                  onclick="if (!($F('task_name').strip().blank()) && $F('task_name').strip() != '<%= default_value %>' ) { new Ajax.Request('/tasks', {asynchronous:true, evalScripts:true, parameters:Form.serialize(this)}); }; return false;"
+                  onclick="if (!($F('task_name').strip().blank()) && $F('task_name').strip() != '<%= default_value %>' ) { new Ajax.Request('/tasks', {asynchronous:true, evalScripts:true, parameters:Form.serialize('new_task_form')}); }; return false;"
                   style='display: block; color: white; background-color: #ff0071; text-align: center; font-size: 18px;border: 1px solid #ff0071;'>tmr it</a>
               </td>
             </tr>
