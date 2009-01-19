@@ -20,3 +20,8 @@ config.action_view.cache_template_loading            = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+ActionMailer::Base.delivery_method = :sendmail
+ActionMailer::Base.sendmail_settings = {
+  :location       => '/usr/sbin/sendmail',
+  :arguments      => '-i -t -f no-reply@tomorrowit.com'
+}

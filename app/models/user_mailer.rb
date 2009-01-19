@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
   
   def signup_notification(user)
     setup_email(user)
-    @subject    += 'Please activate your new account'
+    @subject    += ' - Start Tomorrowing Your Day'
     body[:url]  = @url
   end
   
@@ -26,7 +26,7 @@ class UserMailer < ActionMailer::Base
       @subject     = "TomorrowIt "
       @sent_on     = Time.now
       @body[:user] = user
-      content_type = "text/html"
+      @content_type = "text/html"
     end
 
 end
