@@ -25,3 +25,5 @@ ActionMailer::Base.sendmail_settings = {
   :location       => '/usr/sbin/sendmail',
   :arguments      => '-i -t -f no-reply@tomorrowit.com'
 }
+
+ActionMailer::Base.default_content_type = "text/html"

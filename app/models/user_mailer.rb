@@ -26,7 +26,6 @@ class UserMailer < ActionMailer::Base
       @subject     = "TomorrowIt "
       @sent_on     = Time.now
       @body[:user] = user
-      @content_type = "text/html"
     end
 
 end
