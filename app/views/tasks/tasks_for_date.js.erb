@@ -1,5 +1,4 @@
+window.displayedDate = '<%= @date.to_s(:db) %>';
 $('left_date_title_wrapper').update( '<%= escape_javascript( @title_text ) %>' );
 $('today_tasks_wrapper').update( '<%= escape_javascript( @tasks_html ) %>' );
-
-
 checkForEmptyTasks();

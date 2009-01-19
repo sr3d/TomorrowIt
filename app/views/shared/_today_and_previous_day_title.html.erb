@@ -4,16 +4,17 @@
 
 <div id="<%= date.strftime('%m_%d_%Y') %>" style='padding-right: 40px'>
   <% if logged_in? %>
-  <div style='float:left'>
-    <%= link_to_remote image_tag('arrow2_w.gif'), 
+  <div style='float:left;margin-top:6px;'>
+    <%= link_to_remote image_tag('left12.gif'), 
         :url => { :controller => 'tasks', :action => 'tasks_for_date', :date => date.yesterday.to_s(:db) } %>
     <% if date < @today %>
-      <%= link_to_remote image_tag('arrow2_e.gif'), 
+      <%= link_to_remote image_tag('right12.gif'), 
         :url => { :controller => 'tasks', :action => 'tasks_for_date', :date => date.tomorrow.to_s(:db) } %>
     <% end %>
     <% if date != @today %>
-      <%= link_to_remote 'today', 
-          :url => { :controller => 'tasks', :action => 'tasks_for_date', :date => @today } %>
+      <%= link_to_remote 'TODAY', 
+          :url => { :controller => 'tasks', :action => 'tasks_for_date', :date => @today },
+          :html => { :class => 'item_action_link small' } %>
     <% end %>    
   </div>
   <% end %>

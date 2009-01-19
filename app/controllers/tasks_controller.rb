@@ -103,21 +103,38 @@ class TasksController < ApplicationController
   
   def today_it
     @task = Task.find( params[:id] )
-    @task.due_date= Time.now.to_date
+    @task.due_date = @today = Time.now.to_date
+    
     
     success = @task.save if ( logged_in? and @task.user_id == current_user.id ) or cookies_task_ids.include?( params[:id].to_i )
+    
     if success
       respond_to do |format|
         format.html { redirect_to :controller => "front", :action => "index"}
         format.js do 
+          
+          @task_html = render_to_string( :partial => 'tasks/today_item', :locals => { :task => @task, :visible => 'display:none;' } )
+          
           render :update do |page|
-            page.remove "item_wrapper_#{@task.id}"
+            wrapper_id = "item_wrapper_#{@task.id}"
+            page.remove wrapper_id
 
+            # If not the current date then shouldn't move it to the list
+            page << %!
+              (function(){
+                if( \!window.displayedDate || window.displayedDate == '#{@today.to_s(:db)}' )
+                {
+                  $('today_tasks_wrapper').insert( { top: '#{escape_javascript( @task_html ) }' } );
+                  Effect.BlindDown( '#{wrapper_id}', { duration: 0.3 } );
+                  new Effect.Highlight( '#{wrapper_id}', { duration: 0.6 } );
+                }
+              })();
+            !
             # insert the item to the "tommorrow list"
-            page.insert_html :top, 'today_tasks_wrapper', :partial => 'tasks/today_item', 
-              :locals => { :task => @task, :visible => 'display:none;' }
-            page.visual_effect :blind_down, "item_wrapper_#{@task.id}", :duration => 0.3
-            page.visual_effect :highlight, "item_wrapper_#{@task.id}", :duration => 0.6
+            #page.insert_html :top, 'today_tasks_wrapper', :partial => 'tasks/today_item', 
+            #  :locals => { :task => @task, :visible => 'display:none;' }
+            #page.visual_effect :blind_down, "item_wrapper_#{@task.id}", :duration => 0.3
+            #page.visual_effect :highlight, "item_wrapper_#{@task.id}", :duration => 0.6
             
             page << 'checkForEmptyTasks();'
           end #render
