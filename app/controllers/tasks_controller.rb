@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_filter :login_required, :only => [ :tasks_for_date ]
+  
   def index
   end
 
@@ -130,6 +132,23 @@ class TasksController < ApplicationController
     
   end
   
+  def tasks_for_date
+    @date = Time.parse( params[:date] ).to_date
+    @tasks = Task.find_tasks_for_date( current_user, @date )
+    @tasks_html = render_to_string( :partial => 'shared/left_tasks_list', :locals => { :tasks => @tasks } )
+    
+    @title_text = render_to_string( :partial => 'shared/today_and_previous_day_title',
+                    :locals => { :date => @date } )
+    respond_to do |format|
+      #format.html
+      
+      format.js do
+
+        
+      end
+    end # respond
+    
+  end
   
 protected 
   

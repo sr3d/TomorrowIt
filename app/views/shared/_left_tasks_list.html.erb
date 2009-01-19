@@ -1,0 +1,3 @@
+<% tasks ||= []; tasks.each do |task| %>
+  <%= render :partial => 'tasks/today_item', :locals => { :task => task } %>
+<% end %>

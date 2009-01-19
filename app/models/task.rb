@@ -21,9 +21,16 @@ class Task < ActiveRecord::Base
           AND done_date IS NULL', 
         task_ids,
         Time.now.to_date,
-        Time.now.to_date + 2
-      ],
+        Time.now.to_date + 2 ],
       :order => 'created_at DESC'  )
+  end
+  
+  def self.find_tasks_for_date( user, due_date )
+    return Task.find( :all ,
+      :conditions => [ 
+        'user_id = ? AND ( due_date >= ? AND due_date < ? )',
+        user.id, due_date, due_date + 1
+    ] )
   end
   
   def self.associate_temp_tasks_to_user( task_ids, user )

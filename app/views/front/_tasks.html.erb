@@ -1,8 +1,7 @@
-  <div id="" style='border-bottom: 1px solid #e2e2e2; padding: 30px 0 15px 0;'>
+  <div style='border-bottom: 1px solid #e2e2e2; padding: 30px 0 15px 0;'>
     <div class='one_third'>
-      <div style='padding-right: 40px;text-align: right;'>
-        <span class='today_date'><%= @today.strftime('%m.%d.%Y')%></span>
-        <span style='font-size: 18px;'>today</span>
+      <div id="left_date_title_wrapper">
+        <%= render :partial => 'shared/today_and_previous_day_title', :locals => { :date => @today } %>
       </div>
     </div>
   
@@ -20,13 +19,11 @@
 
   <div class='one_third'>
     <div id='today_tasks_wrapper' style='padding-right: 40px; text-align: right;'>
-      <% @today_tasks.each do |task| %>
-        <%= render :partial => 'tasks/today_item', :locals => { :task => task } %>
-      <% end %>
+      <%= render :partial => 'shared/left_tasks_list', :locals => { :tasks => @today_tasks} %>
     </div>
 
     <div id="today_empty" style='padding-right: 40px; text-align:right; <%= "display: none" unless @today_tasks.empty? %>;'>
-      <span style='font-size:48px;color: #EFEEEF'>nothing for today. <i>great!</i></span>
+      <span style='font-size:48px;color: #EFEEEF'>nothing for the day. <i>great!</i></span>
     </div>
     <br style='clear:both'/>    
   </div><!-- #today_tasks_wrapper -->

@@ -8,7 +8,7 @@ function toggleForgotPasswordForm()
   if( $('forgot_password_form_wrapper').visible() )
     $('forgot_password_form_wrapper').hide();
   else
-    Effect.BlindDown('forgot_password_form_wrapper', { duration: 0.3 });
+    Effect.BlindDown('forgot_password_form_wrapper', { duration: 0.3 } );
   return false
 }  
 

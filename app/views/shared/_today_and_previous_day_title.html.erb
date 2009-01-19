@@ -1,0 +1,31 @@
+<% @today ||= Time.now.to_date %>
+<% date ||= @today %>
+
+
+<div id="<%= date.strftime('%m_%d_%Y') %>" style='padding-right: 40px'>
+  <% if logged_in? %>
+  <div style='float:left'>
+    <%= link_to_remote image_tag('arrow2_w.gif'), 
+        :url => { :controller => 'tasks', :action => 'tasks_for_date', :date => date.yesterday.to_s(:db) } %>
+    <% if date < @today %>
+      <%= link_to_remote image_tag('arrow2_e.gif'), 
+        :url => { :controller => 'tasks', :action => 'tasks_for_date', :date => date.tomorrow.to_s(:db) } %>
+    <% end %>
+    <% if date != @today %>
+      <%= link_to_remote 'today', 
+          :url => { :controller => 'tasks', :action => 'tasks_for_date', :date => @today } %>
+    <% end %>    
+  </div>
+  <% end %>
+  <div style='float:right;'>
+    <span class='today_date'><%= date.strftime('%m.%d.%Y')%></span>
+    <span style='font-size: 18px;'>
+      <%= case date 
+          when @today: 'today'
+          when @today.yesterday: 'yesterday'
+          else date.strftime( '%A' ).downcase end %>
+    </span>
+    
+  </div>
+
+</div>

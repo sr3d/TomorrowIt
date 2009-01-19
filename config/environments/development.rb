@@ -16,11 +16,11 @@ config.action_controller.perform_caching             = false
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
 
-ActionMailer::Base.smtp_settings = {
-  :address  => "localhost",
-  :port  => 25, 
-  :domain  => "www.tomorrowit.com",
-  :user_name  => 'root',
-  :password  => "123456",
-  :authentication  => :login
-} 
+#ActionMailer::Base.smtp_settings = {
+#  :address  => "localhost",
+#  :port  => 25, 
+#  :domain  => "www.tomorrowit.com",
+#  :user_name  => 'root',
+#  :password  => "123456",
+#  :authentication  => :login
+#} 
