@@ -9,7 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090116043812) do
+ActiveRecord::Schema.define(:version => 20090120053556) do
+
+  create_table "chain_task_histories", :force => true do |t|
+    t.integer  "chain_task_id", :null => false
+    t.integer  "user_id",       :null => false
+    t.datetime "created_at"
+  end
+
+  add_index "chain_task_histories", ["chain_task_id", "created_at"], :name => "index_chain_task_histories_on_chain_task_id_and_created_at"
+
+  create_table "chain_tasks", :force => true do |t|
+    t.string   "name",       :limit => 250, :null => false
+    t.integer  "user_id",                   :null => false
+    t.string   "color",      :limit => 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chain_tasks", ["user_id"], :name => "index_chain_tasks_on_user_id"
 
   create_table "tasks", :force => true do |t|
     t.integer  "user_id"

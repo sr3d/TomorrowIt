@@ -12,6 +12,11 @@
       </div>
     </div>
     
+    
+    <div id='chain_header'>
+      <span style='font-size: 18px;'><%= Time.now.strftime("%m.%y") %> chains</span>
+    </div>
+    
     <br style='clear:both'/>
     
   </div>
@@ -38,5 +43,8 @@
     <div id="tomorrow_empty" style='padding-left: 40px; <%= "display: none" unless @tomorrow_tasks.empty? %>;'>
       <span style='font-size:48px;color: #EFEEEF'>nothing for tomorrow. <i>love</i> it!</span>
     </div>
-    
+  </div>
+
+  <div id='chain_wrapper'>
+    <%= render :partial => 'chain_calendar', :locals => { :chain_tasks => @chain_tasks } %>
   </div>

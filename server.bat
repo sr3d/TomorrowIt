@@ -1,1 +1,1 @@
-ruby script/server
+ruby script/server webrick

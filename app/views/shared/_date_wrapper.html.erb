@@ -1,0 +1,25 @@
+<% 
+  todos ||= []
+  formatted_date = date.strftime('%m_%d_%Y') 
+  todos_by_date = todos.collect{ |todo| todo if todo.due_date == date }.compact
+%>
+<div class='<%= ( [ 0 ].include? date.wday ) ? 'with_separator' : 'with_light_separator' %>' style='margin-bottom:5px;padding: 5px 0;'>
+  <div class='' style='float:left; text-align: right; width: 100px; border-right: 1px solid #eeeeee; padding: 0px 5px;'>
+    <span class='date_header_day_of_week'>
+      <%= date.strftime '%A' %>
+    </span>
+    <br/>
+    <span style='font-size: 12px'><%= date.strftime '%m.%d' %></span>
+  </div>
+  
+  <div style='margin-left: 115px'>
+    <div id="date_active_items_<%= formatted_date %>" class='active_items_container'>
+      <% todos_by_date.each do |todo| %>
+        <%= render :partial => 'item_wrapper', :locals => { :item => todo } %>
+      <% end %>
+    </div>
+  </div>
+  <%# if todos_by_date.empty? %>
+    <br style='clear:both'/>
+  <%# end %>
+</div>

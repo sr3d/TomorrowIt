@@ -22,6 +22,7 @@ protected
 
   def process_for_authenticated_user
     @tasks = Task.find_active_tasks_for_user current_user.id
+    @chain_tasks = ChainTask.find_by_user current_user
     process_tasks
   end
   
@@ -33,7 +34,6 @@ protected
 
   def process_tasks
     @today, @tomorrow = Time.now.to_date, (Time.now.to_date + 1.day)
-    
     @today_tasks = @tasks.collect{ |task| task if task.due_date.to_date == @today }.compact
     @tomorrow_tasks = @tasks.collect{ |task| task if task.due_date.to_date == @tomorrow }.compact
   end

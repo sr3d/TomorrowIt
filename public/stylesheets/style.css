@@ -117,3 +117,30 @@ a.big_link_button:hover
 
 .general_textbox
 { border: 1px solid transparent; background-color: #f4f4f4; width: 150px; padding: 5px; margin: 5px 0px; }
+
+
+#chain_header
+{ float:left; width:170px;margin-left: 20px; }
+
+#chain_wrapper
+{ width: 170px; float: left; margin-left: 20px }
+
+
+
+
+.calendar_table
+{ border: 0}
+  .calendar_table td
+  { border: 1px solid transparent;}
+  .weekday_label
+  { font-size: 14px; font-weight: bold;text-align: center; }
+.calendar_day_table_cell
+{ width: 30px;}
+.calendar_row
+{ }
+  .calendar_row td
+  { border-bottom: 1px solid #d4d4d4; }
+  .calender_day_container a, .calender_day_container a:visited
+  { text-align: center; font-size: 11px; border: 1px solid transparent; border-bottom: 3px solid transparent; display:block; margin: 5px 2px; padding: 3px 0;}
+  .calender_day_container a:hover, a.has_items
+  { border: 1px solid #d4d4d4; border-bottom: 3px solid #740085}
