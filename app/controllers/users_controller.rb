@@ -17,6 +17,9 @@ class UsersController < ApplicationController
   
   def edit
     @user = current_user
+    
+    @chain_tasks = ChainTask.find_by_user current_user
+    
   end
   
   def update

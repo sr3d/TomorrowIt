@@ -26,9 +26,11 @@
           <td class='calendar_day_table_cell' valign='top'>
             <% if day.month == current_month # only print out dates of the month %>
               <div class='calender_day_container '>
-                <a href='javascript:void(0)' 
+                <a href='javascript:void(0)'
+                  onclick='ChainTask.toggleDate(this, "<%= day.to_s(:db) %>");return false;'
                   id='cal_date_<%= day.strftime( "%m_%d_%Y" )%>'
-                  class='<%= 'has_items' unless items.collect{ |item| item if item.get_date == day }.compact.empty? %>'>
+                  class='<%= 'has_items' unless items.collect{ |item| item if item.get_date == day }.compact.empty? %>'
+                  style=''>
                   <%= day.day if day.month == current_month %>
                 </a>
               </div>

@@ -14,6 +14,16 @@ class ChainTask < ActiveRecord::Base
       ])
   end
   
+  def toggle_date( date = nil )
+    return unless date
+    
+    if history = ChainTaskHistory.find(:first, :conditions => [ 'created_on = ?', date])
+      history.destroy
+    else
+      ChainTaskHistory.create!(:chain_task_id => self.id, :user_id => self.user_id, :created_on => date )
+    end
+  end
+  
   
   def display_color
     return self.color || @@colors[ 0 ]

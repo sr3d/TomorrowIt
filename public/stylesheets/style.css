@@ -143,4 +143,4 @@ a.big_link_button:hover
   .calender_day_container a, .calender_day_container a:visited
   { text-align: center; font-size: 11px; border: 1px solid transparent; border-bottom: 3px solid transparent; display:block; margin: 5px 2px; padding: 3px 0;}
   .calender_day_container a:hover, a.has_items
-  { border: 1px solid #d4d4d4; border-bottom: 3px solid #740085}
+  { border: 1px solid #d4d4d4; background-color: #FF0071; color: white;}

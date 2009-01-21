@@ -12,6 +12,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :tasks, :member => { :done => :post, :tomorrow_it => :post, :today_it => :post }
   map.resource :session
   
+  map.resources :chain_tasks
+  
   map.resource :ical
 
   map.connect 'ical/:token', :controller => 'ical', :action => 'index'

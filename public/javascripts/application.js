@@ -51,3 +51,33 @@ function textboxToggleValue( element, defaultValue ) {
   }
   element.observe('focus', onFocus ).observe( 'blur', onBlur );
 }
+
+// window.currentChainTaskId =  '';
+var ChainTask = { 
+  toggleDate: function( element, date ) {
+    if( !this.getCurrentChainTaskId() ) return;
+    
+    element = $(element);
+    new Ajax.Request( '/chain_tasks/toggle_date', { 
+      parameters: { date: date, id: this.getCurrentChainTaskId(), authenticity_token: window._token }
+      ,onSuccess: function(){ element.toggleClassName('has_items') }
+    } );
+  }
+  ,selectTask: function( element, chainTaskId ) {
+    element = $(element);
+    
+    if( window.currentChainTaskId == chainTaskId )
+      return;
+    
+      window.currentChainTaskId = chainTaskId;
+      element.toggleClassName( 'current' );
+      new Ajax.Request( '/chain_tasks/toggle_date', { 
+        parameters: { date: date, id: this.getCurrentChainTaskId }
+        ,onSuccess: function(){ element.toggleClassName('has_items') }
+      } );   
+  }
+  
+  ,getCurrentChainTaskId: function() { 
+    return window.currentChainTaskId;
+  }
+};
