@@ -5,7 +5,7 @@ class ChainTasksController < ApplicationController
   
   def get_calendar
     
-    @calendar_html = render_to_string :partial => 'shared/calendar', :locals => { :items => item }
+    # @calendar_html = render_to_string :partial => 'shared/calendar', :locals => { :items => item }
     @chain_task = ChainTask.find_by_id_and_user_id( params[:id], current_user.id )
     render :nothing and return unless @chain_task
     
@@ -17,8 +17,8 @@ class ChainTasksController < ApplicationController
         
         render :update do |page|
           
-          page.replace_html 'calendar_wrapper', :partial => 'shared/calendar', :locals => { :items => @item }
-          page << "window.currentChainTaskId = '#{chainTaskId}'; "
+          page.replace_html 'calendar_wrapper', :partial => 'shared/calendar', :locals => { :items => @items }
+          page << "window.currentChainTaskId = '#{@chain_task.id}'; "
           
         end
         

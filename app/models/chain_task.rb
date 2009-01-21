@@ -17,7 +17,7 @@ class ChainTask < ActiveRecord::Base
   def toggle_date( date = nil )
     return unless date
     
-    if history = ChainTaskHistory.find(:first, :conditions => [ 'created_on = ?', date])
+    if history = ChainTaskHistory.find(:first, :conditions => [ 'created_on = ? AND chain_task_id = ?', date, self.id ])
       history.destroy
     else
       ChainTaskHistory.create!(:chain_task_id => self.id, :user_id => self.user_id, :created_on => date )

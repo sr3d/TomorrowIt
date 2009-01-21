@@ -55,15 +55,18 @@ function textboxToggleValue( element, defaultValue ) {
 // window.currentChainTaskId =  '';
 var ChainTask = { 
   toggleDate: function( element, date ) {
-    if( !this.getCurrentChainTaskId() ) return;
+    if( this.isTogglingDate ) { console.log('too fast');return; }
     
+    chainTaskId = this.getCurrentChainTaskId();
     element = $(element);
     new Ajax.Request( '/chain_tasks/toggle_date', { 
-      parameters: { date: date, id: this.getCurrentChainTaskId(), authenticity_token: window._token }
-      ,onSuccess: function(){ element.toggleClassName('has_items') }
+      parameters: { date: date, id: chainTaskId, authenticity_token: window._token }
+      ,onSuccess: function(){ element.toggleClassName('has_items').toggleClassName('chain_task_' + chainTaskId ); }
+      ,onCreate: function() { ChainTask.isTogglingDate = true; }
+      ,onComplete: function() { ChainTask.isTogglingDate = false; }
     } );
   }
-  ,selectTask: function( element, chainTaskId ) {
+  ,selectChainTask: function( element, chainTaskId ) {
     element = $(element);
     
     if( window.currentChainTaskId == chainTaskId )
@@ -71,9 +74,9 @@ var ChainTask = {
     
       window.currentChainTaskId = chainTaskId;
       element.toggleClassName( 'current' );
-      new Ajax.Request( '/chain_tasks/toggle_date', { 
-        parameters: { date: date, id: this.getCurrentChainTaskId }
-        ,onSuccess: function(){ element.toggleClassName('has_items') }
+      new Ajax.Request( '/chain_tasks/get_calendar', { 
+        parameters: { id: chainTaskId, authenticity_token: window._token }
+        ,onSuccess: function(){ element.toggleClassName('current') }
       } );   
   }
   

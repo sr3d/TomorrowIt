@@ -142,5 +142,9 @@ a.big_link_button:hover
   { border-bottom: 1px solid #d4d4d4; }
   .calender_day_container a, .calender_day_container a:visited
   { text-align: center; font-size: 11px; border: 1px solid transparent; border-bottom: 3px solid transparent; display:block; margin: 5px 2px; padding: 3px 0;}
-  .calender_day_container a:hover, a.has_items
-  { border: 1px solid #d4d4d4; background-color: #FF0071; color: white;}
+  .calender_day_container a
+  { border: 1px solid transparent;  }
+  .calender_day_container a.has_items
+  { background-color: #FF0071; color: white;}
+  .calender_day_container a:hover
+  { border: 1px solid #FF0071; }

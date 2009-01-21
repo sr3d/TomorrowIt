@@ -6,7 +6,7 @@ class CreateChainTaskHistories < ActiveRecord::Migration
       t.column :created_on, :date
     end
     
-    add_index :chain_task_histories, [ :chain_task_id, :created_at ]
+    add_index :chain_task_histories, [ :chain_task_id, :created_on ]
     
   end
 

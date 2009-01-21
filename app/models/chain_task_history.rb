@@ -6,4 +6,8 @@ class ChainTaskHistory < ActiveRecord::Base
     self.created_on
   end
   
+  def get_type_id
+    self.chain_task_id
+  end
+  
 end
