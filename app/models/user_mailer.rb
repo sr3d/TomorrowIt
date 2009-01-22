@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  @url  = "http://tomrrowit.com"
+  @url  = "www.http://tomrrowit.com"
   
   def signup_notification(user)
     setup_email(user)

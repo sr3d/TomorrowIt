@@ -8,7 +8,7 @@
 %>
 
 <script type="text/javascript" charset="utf-8">
-window.currentChainTaskId = '<%= default_chain_task.id %>';
+window.currentChainTaskId = '<%= default_chain_task.nil? ? '' : default_chain_task.id %>';
 </script>
 
 <div id='calendar_wrapper'>
