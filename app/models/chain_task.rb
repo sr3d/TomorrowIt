@@ -1,5 +1,7 @@
 class ChainTask < ActiveRecord::Base
   belongs_to :user
+
+  validates_presence_of :name
   
   def self.find_by_user( user )
     return ChainTask.find( :all, 
@@ -24,6 +26,10 @@ class ChainTask < ActiveRecord::Base
     end
   end
   
+  def toggle_status!
+    self.update_attribute :is_active, !self.is_active
+    return self.is_active
+  end
   
   def display_color
     return self.color || @@colors[ 0 ]
@@ -45,6 +51,15 @@ class ChainTask < ActiveRecord::Base
     "D15600", #Etsy Vermillion
     "B02B2C", # ror 
     ]
+
+  def self.colors
+    @@colors
+  end
+
+  def delete!
+    connection.execute "DELETE FROM chain_task_histories WHERE chain_task_id = #{self.id} AND user_id = #{self.user_id}"
+    self.destroy
+  end
   
   protected
   def get_next_available_color

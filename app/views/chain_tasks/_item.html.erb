@@ -1,0 +1,33 @@
+<% 
+  visible ||= ''
+%>
+
+<div id='chain_wrapper_<%= item.id %>' style='border-bottom: 1px solid #EFEEEF; <%= visible %>' >
+  <table border="0" cellspacing="5" cellpadding="5" width='100%'>
+    <tr>
+      <td style='width:200px;'><%= h item.name %></td>
+      <td>
+      
+        <ul class='horizontal_list'>
+          <% ChainTask.colors.each do |color| %>
+            <li>
+              <div class='color_swatch_item' style='background-color: #<%= h color %>'><span><%= h color %></span></div></li>
+          <% end %>
+        </ul>
+      </td>
+      <td>
+        <label for="toggle_chain_<%= item.id %>">
+          <input type='checkbox' id='toggle_chain_<%= item.id %>' <%= 'checked' if item.is_active %> 
+            onclick="new Ajax.Request( '/chain_tasks/toggle_status', { 
+              parameters: { id: <%= item.id %>, authenticity_token: window._token }
+            })"
+          > Active? </label>
+      </td>
+      
+      <td>
+        <%= link_to_remote 'Delete?', :url => { :action => 'destroy', :controller => 'chain_tasks', :id => item.id }, :method => 'delete', :confirm => 'are you sure?' %>
+      </td>
+      
+    </tr>
+  </table>
+</div>

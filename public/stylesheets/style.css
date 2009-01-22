@@ -148,3 +148,10 @@ a.big_link_button:hover
   { background-color: #FF0071; color: white;}
   .calender_day_container a:hover
   { border: 1px solid #FF0071; }
+  
+  
+/* Chains */
+.color_swatch_item
+{ width: 30px; height: 30px; margin: 3px; }
+  .color_swatch_item span
+  { display: none; }

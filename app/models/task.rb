@@ -3,6 +3,8 @@ class Task < ActiveRecord::Base
   
   before_create :set_due_date
   
+  validates_presence_of :name
+  
   def self.find_active_tasks_for_user( user_id )
     Task.find(:all, 
       :conditions => [ 'user_id = ? AND due_date >= ? AND due_date < ? AND done_date IS NULL', 

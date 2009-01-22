@@ -12,11 +12,11 @@
       </div>
     </div>
     
-    
-    <div id='chain_header'>
-      <span style='font-size: 18px;'><%= Time.now.strftime("%m.%y") %> chains</span>
-    </div>
-    
+    <% if logged_in? %>
+      <div id='chain_header'>
+        <span style='font-size: 18px;'><%= Time.now.strftime("%m.%y") %> chains</span>
+      </div>
+    <% end %>    
     <br style='clear:both'/>
     
   </div>
@@ -45,6 +45,8 @@
     </div>
   </div>
 
-  <div id='chain_wrapper'>
-    <%= render :partial => 'chain_calendar', :locals => { :chain_tasks => @chain_tasks } %>
-  </div>
+  <% if logged_in? %>
+    <div id='chain_wrapper'>
+      <%= render :partial => 'chain_calendar', :locals => { :chain_tasks => @chain_tasks } %>
+    </div>
+  <% end %>

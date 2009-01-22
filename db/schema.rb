@@ -9,15 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090120053556) do
+ActiveRecord::Schema.define(:version => 20090122045850) do
 
   create_table "chain_task_histories", :force => true do |t|
-    t.integer  "chain_task_id", :null => false
-    t.integer  "user_id",       :null => false
-    t.datetime "created_at"
+    t.integer "chain_task_id", :null => false
+    t.integer "user_id",       :null => false
+    t.date    "created_on"
   end
 
-  add_index "chain_task_histories", ["chain_task_id", "created_at"], :name => "index_chain_task_histories_on_chain_task_id_and_created_at"
+  add_index "chain_task_histories", ["chain_task_id", "created_on"], :name => "index_chain_task_histories_on_chain_task_id_and_created_at"
 
   create_table "chain_tasks", :force => true do |t|
     t.string   "name",       :limit => 250, :null => false
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20090120053556) do
     t.string   "color",      :limit => 30
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_active"
   end
 
   add_index "chain_tasks", ["user_id"], :name => "index_chain_tasks_on_user_id"
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20090120053556) do
     t.datetime "remember_token_expires_at"
     t.string   "activation_code",           :limit => 40
     t.datetime "activated_at"
+    t.boolean  "is_chain_enabled",                         :default => false
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
