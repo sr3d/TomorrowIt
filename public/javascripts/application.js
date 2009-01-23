@@ -83,4 +83,26 @@ var ChainTask = {
   ,getCurrentChainTaskId: function() { 
     return window.currentChainTaskId;
   }
+  
+  ,selectChainTaskColor: function(element, chainTaskId ) {
+    element = $(element);
+    var wrapper = element.up('.chain_wrapper');
+    var currentColor = wrapper.getAttribute('color');
+    var selectedColor = element.getAttribute('color');
+    if( currentColor == selectedColor )
+      return;
+      
+    console.log( 'setting new color ' + selectedColor )  ;
+    new Ajax.Request( '/chain_tasks/color', { 
+      parameters: { 
+        authenticity_token: window._token
+        ,color: selectedColor
+        ,id: chainTaskId
+      }
+      ,onSuccess: function(response) { 
+        wrapper.style.backgroundColor = "#" + selectedColor;
+        wrapper.setAttribute('color', selectedColor);
+      }
+    } );
+  }
 };

@@ -2,7 +2,7 @@
   visible ||= ''
 %>
 
-<div id='chain_wrapper_<%= item.id %>' style='border-bottom: 1px solid #EFEEEF; <%= visible %>' >
+<div id='chain_wrapper_<%= item.id %>' style='border-bottom: 1px solid #EFEEEF; <%= visible %>' color="<%= item.display_color %>" class='chain_wrapper'>
   <table border="0" cellspacing="5" cellpadding="5" width='100%'>
     <tr>
       <td style='width:200px;'><%= h item.name %></td>
@@ -11,7 +11,12 @@
         <ul class='horizontal_list'>
           <% ChainTask.colors.each do |color| %>
             <li>
-              <div class='color_swatch_item' style='background-color: #<%= h color %>'><span><%= h color %></span></div></li>
+              <div class='color_swatch_item' style=''>
+                <a href="javascript:void(0)"
+                  onclick='ChainTask.selectChainTaskColor(this, <%= item.id %>);return false;'
+                  style="background-color: #<%= h color %>" color='<%= h color %>'><span><%= h color %></span></a>
+              </div>
+            </li>
           <% end %>
         </ul>
       </td>

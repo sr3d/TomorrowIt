@@ -125,6 +125,9 @@ a.big_link_button:hover
 #chain_wrapper
 { width: 170px; float: left; margin-left: 20px }
 
+.color_swatch_item a
+{ display: block; }
+
 
 
 
@@ -152,6 +155,8 @@ a.big_link_button:hover
   
 /* Chains */
 .color_swatch_item
-{ width: 30px; height: 30px; margin: 3px; }
-  .color_swatch_item span
+{  }
+  .color_swatch_item a 
+  { display: block; width: 30px; height: 30px; margin: 3px; }
+  .color_swatch_item a span
   { display: none; }

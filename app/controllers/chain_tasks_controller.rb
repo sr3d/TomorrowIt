@@ -78,11 +78,15 @@ class ChainTasksController < ApplicationController
   end
 
   def toggle_date
-
     render :nothing unless @chain_task
     @date = Time.parse( params[:date] ).to_date
     @chain_task.toggle_date @date
     render :text => :ok and return
+  end
+  
+  def color
+    @chain_task.update_attribute :color, params[:color]
+    render :text => :ok
   end
   
   private
