@@ -18,6 +18,7 @@
             <li><%= password_field_tag 'password', nil, :class => 'login_input' %></li>
           </ul>
           <%= hidden_field_tag 'remember_me', 1 %>
+          <div style='display:none;'><input type='submit'></div>
         <% end %>
       </div>
     </div>
@@ -138,27 +139,15 @@
                     <%= submit_tag 'pain-free signup' %>
                   </td>
                 </tr>
-
-
               </table>
             <% end %>
           </div>
         </div><!-- .one_third -->
-
-
         <br style='clear:both'/>
       </div>
-      
-      
-      
       <br style='clear:both'/>
     </div><!-- #main_content_padding -->
-    
-    
-    
   </div><!-- #main_content_container -->
-
-
 </div><!-- .wrapper-->
 
 <div id="tasks_wrapper" style='<%= "display: none" if @tasks.empty? %>' >

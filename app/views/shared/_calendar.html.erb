@@ -30,7 +30,7 @@
                 <a href='javascript:void(0)'
                   onclick='ChainTask.toggleDate(this, "<%= day.to_s(:db) %>");return false;'
                   id='cal_date_<%= day.strftime( "%m_%d_%Y" )%>'
-                  class='<%= "has_items chain_task_#{item.get_type_id}" if has_items %>'>
+                  class='<%= "has_items current_chain_task_#{item.get_type_id}" if has_items %>'>
                   <%= day.day if day.month == current_month %>
                 </a>
               </div>
