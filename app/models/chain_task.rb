@@ -9,6 +9,12 @@ class ChainTask < ActiveRecord::Base
       :order => 'id ASC' )
   end
   
+  def self.find_all_chain_tasks_for_user( user )
+    return ChainTask.find( :all, 
+      :conditions => [ "user_id = ?", user.id ],
+      :order => 'is_active DESC, id DESC ' )        
+  end
+  
   def load_history_for_month( date )
     return ChainTaskHistory.find( :all, 
       :conditions => [ 'chain_task_id = ? AND created_on >= ? AND created_on < ?', 

@@ -5,20 +5,32 @@
 <div id='chain_wrapper_<%= item.id %>' style='border-bottom: 1px solid #EFEEEF; <%= visible %>' color="<%= item.display_color %>" class='chain_wrapper'>
   <table border="0" cellspacing="5" cellpadding="5" width='100%'>
     <tr>
-      <td style='width:200px;'><%= h item.name %></td>
+      <td style='width:250px;'>
+        <% 
+          if item.is_active
+            style = "background-color: \##{item.display_color};color:white;" 
+          else
+            style = "background-color: #DFDFDF;color:\##{item.display_color};font-style: italic;" 
+          end
+        %>
+        <div id="chain_task_name_<%= item.id %>"  style='<%= style %>;padding: 7px 5px;margin-right: 30px;font-size: 11px; text-transform: uppercase;'>
+          <%= h item.name %>
+        </div>
+      </td>
       <td>
-      
-        <ul class='horizontal_list'>
-          <% ChainTask.colors.each do |color| %>
-            <li>
-              <div class='color_swatch_item' style=''>
-                <a href="javascript:void(0)"
-                  onclick='ChainTask.selectChainTaskColor(this, <%= item.id %>);return false;'
-                  style="background-color: #<%= h color %>" color='<%= h color %>'><span><%= h color %></span></a>
-              </div>
-            </li>
-          <% end %>
-        </ul>
+        <div style='margin-left: 25px;'>
+          <ul class='horizontal_list'>
+            <% ChainTask.colors.each do |color| %>
+              <li>
+                <div class='color_swatch_item' style=''>
+                  <a href="javascript:void(0)"
+                    onclick='ChainTask.selectChainTaskColor(this, <%= item.id %>);return false;'
+                    style="background-color: #<%= h color %>" color='<%= h color %>'><span><%= h color %></span></a>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>        
       </td>
       <td>
         <label for="toggle_chain_<%= item.id %>">
@@ -26,11 +38,11 @@
             onclick="new Ajax.Request( '/chain_tasks/toggle_status', { 
               parameters: { id: <%= item.id %>, authenticity_token: window._token }
             })"
-          > Active? </label>
+          > Active</label>
       </td>
       
       <td>
-        <%= link_to_remote 'Delete?', :url => { :action => 'destroy', :controller => 'chain_tasks', :id => item.id }, :method => 'delete', :confirm => 'are you sure?' %>
+        <%= link_to_remote 'DELETE', :url => { :action => 'destroy', :controller => 'chain_tasks', :id => item.id }, :method => 'delete', :confirm => 'are you sure?', :html => { :class => 'link_button small' } %>
       </td>
       
     </tr>

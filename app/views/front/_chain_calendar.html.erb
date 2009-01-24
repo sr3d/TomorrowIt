@@ -18,17 +18,18 @@ window.currentChainTaskId = '<%= default_chain_task.nil? ? '' : default_chain_ta
 <div>
   <% chain_tasks.each do |chain_task| %>
     <style type="text/css" media="screen">
-      .chain_task_<%= chain_task.id %> { background-color: #<%= chain_task.display_color %> !important; }
+      .chain_task_<%= chain_task.id %> { background-color: #<%= chain_task.display_color %> !important; color: white;}
+      .chain_task a { color: white; }
     </style>
-    <div class='chain_task_item_wrapper_<%= chain_task.id %>' 
+    <div id='chain_task_item_wrapper_<%= chain_task.id %>' 
       style='padding: 5px;'>
-      <div style='float: left; border: 1px solid #<%= chain_task.display_color %>; padding: 5px;' >
+      <div class='chain_task chain_task_<%= chain_task.id %>'
+        style='padding: 5px 7px; font-size: 11px; text-transform: uppercase;color: white;' >
         <a href='javascript:void(0);'
           onclick='ChainTask.selectChainTask(this, <%= chain_task.id %>);return false;'>
           <%= h chain_task.name %>  
         </a>
       </div>
-      <br style='clear:both'/>
     </div>
   <% end %>
 </div>

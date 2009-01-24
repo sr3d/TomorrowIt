@@ -66,17 +66,17 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector
   config.active_record.observers = :user_observer
 
-  google_paths = {
-   'prototype' => 'http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.3/',
-   'controls'  => 'http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.2/',
-   'dragdrop'  => 'http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.2/',
-   'effects'   => 'http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.2/'
- }
+ # google_paths = {
+ #  'prototype' => 'http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.3/',
+ #  'controls'  => 'http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.2/',
+ #  'dragdrop'  => 'http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.2/',
+ #  'effects'   => 'http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.2/'
+ #}
 
- config.action_controller.asset_host = Proc.new do |source, request|
-   google_asset = google_paths.keys.detect { |asset| source.starts_with?("/javascripts/#{asset}") }
-   google_asset ? google_paths[google_asset] : "#{request.protocol}#{request.host_with_port}"
- end
+ #config.action_controller.asset_host = Proc.new do |source, request|
+ #  google_asset = google_paths.keys.detect { |asset| source.starts_with?("/javascripts/#{asset}") }
+ #  google_asset ? google_paths[google_asset] : "#{request.protocol}#{request.host_with_port}"
+ #end
 
   
 end

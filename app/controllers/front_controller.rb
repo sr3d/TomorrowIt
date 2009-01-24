@@ -22,7 +22,7 @@ protected
 
   def process_for_authenticated_user
     @tasks = Task.find_active_tasks_for_user current_user.id
-    @chain_tasks = ChainTask.find_by_user current_user
+    @chain_tasks = current_user.is_chain_enabled ? ChainTask.find_by_user(current_user) : []
     process_tasks
   end
   

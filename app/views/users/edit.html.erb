@@ -70,7 +70,7 @@
     <div id="name">
       <%= link_to_remote 'Generate New URL', :url => new_ical_url_users_path, 
             :confirm => 'are you sure?',
-            :html => { :class => 'big_link_button' } %>
+            :html => { :class => 'big link_button' } %>
     </div>
   </div>  
 
@@ -80,51 +80,19 @@
 
 
   <div class='page_title' style='padding-top: 30px;'>
-    don't break the chain
+    don't break the chain <a href="/help#dont_break_the_chain" class='link_button small'>?</a>
   </div>
 
-  <div>
-    <label for="toggleEnableChainTasks">
-      <input type='checkbox' id='toggleEnableChainTasks' <%= 'checked' if current_user.is_chain_enabled %>> Enable Chain </label>
+  <div style='margin: 10px 0px;'>
+    <input type='checkbox' id='chkEnableChainTasks'
+      <%= 'checked' if current_user.is_chain_enabled %>  
+      onclick="ChainTask.toggleEnableChainTasks(this)">&nbsp;&nbsp;
+    <span class='big' style='font-weight:bold;'>
+      Enable a powerful Goal-setting Method.  Be successful tomorrow by working one day at a time towards your goal, starting <span class='colored'>today</span>
+    </span>
   </div>
 
   <div id="chains_wrapper" style=' <%= 'display:none' unless current_user.is_chain_enabled %>' >
-    
-    <% @chain_tasks.each do |chain_task| %>
-      <%= render :partial => 'chain_tasks/item', :locals => { :item => chain_task } %>
-    
-    <% end %>
-    
-    <div id="new_chain_task_form_wrapper">
-      <% remote_form_for :chain_task, :url => chain_tasks_path do |form| %>
-        <div class='form_label'>
-          new goal:
-        </div> 
-        <div class='' style='width: 150px;'>
-          <%= form.text_field :name, :class => 'textbox' %>
-        </div>
-        
-        <div class='form_field_wrapper' style='margin-left: 150px;'>
-          <%= submit_tag 'Create' %>
-        </div>
-
-      <% end %>
-    </div>
-    
-    
+    <%= render :partial => 'chain_tasks' %>
   </div>
-
-  <div>
-    Don't break the chain is based on a motivation method that Comedian Jerry Seinfeld used to achieve his many successes.  Since the lack of motivation is the biggest hurdles any entreprenuer needs to overcome, don't break the chain becomes an important and useful tool to keep one stay on track and focused.
-    <br/>
-    <br/>
-    Pick a goal, mark the days on the calendar as you are working towards your goal - everyday.  Don't break the chain.
-    <br/>
-    <br/>
-    Personally, after I found out about the "Don't Break The Chain" technique, I committed myself to do at least one commit to SVN, no matter what.  TomorrowIt is the first result of the chain.
-    <br/>
-    <br/>
-    The Don't Break The Chain functionality is inspired from the similarly named website, <a href='http://dontbreakthechain.com'>http://dontbreakthechain.com</a>
-  </div>  
-  
 </div>

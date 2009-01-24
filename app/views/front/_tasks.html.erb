@@ -12,7 +12,7 @@
       </div>
     </div>
     
-    <% if logged_in? %>
+    <% if logged_in? and current_user.is_chain_enabled %>
       <div id='chain_header'>
         <span style='font-size: 18px;'><%= Time.now.strftime("%m.%y") %> chains</span>
       </div>
@@ -45,7 +45,7 @@
     </div>
   </div>
 
-  <% if logged_in? %>
+  <% if logged_in? and current_user.is_chain_enabled %>
     <div id='chain_wrapper'>
       <%= render :partial => 'chain_calendar', :locals => { :chain_tasks => @chain_tasks } %>
     </div>

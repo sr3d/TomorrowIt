@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
     save!
   end
   
-  #define_callback :after_reset_password
+  
   def reset_password!
 		length = 10
     chars = ("a".."z").to_a + ("1".."9").to_a 
@@ -60,6 +60,10 @@ class User < ActiveRecord::Base
 		notify :after_reset_password
 		
 		return true
+  end
+  
+  def toggle_chain_task_feature!
+    self.update_attribute :is_chain_enabled, !self.is_chain_enabled
   end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.

@@ -1,0 +1,30 @@
+<% @chain_tasks.each do |chain_task| %>
+  <%= render :partial => 'chain_tasks/item', :locals => { :item => chain_task } %>
+
+<% end %>
+
+<br/>
+<div id="new_chain_task_form_wrapper">
+  <b>Pick a goal, mark the days on the calendar as you are working towards your goal - everyday.  Don't break the chain.</b>
+  <br/>
+  <% default_value = "set a new goal for tomorrow" %>
+  <% remote_form_for :chain_task, :url => chain_tasks_path,
+      :condition => "!($F('chain_task_name').strip().blank()) && $F('chain_task_name').strip() != '#{default_value}' ",
+      :success => 'resetTextBoxes();' do |form| %>
+    <div class='' style=''>
+      <%= form.text_field :name, :class => 'gray_textbox' %>
+      <%= submit_tag 'Create' %>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+    ( function() { 
+        textboxToggleValue( 'chain_task_name', '<%= default_value %>' );
+    } )();
+    var resetTextBoxes = function(){ 
+      $('chain_task_name').value = '';
+      $('chain_task_name').focus();
+    }
+    </script>
+
+  <% end %>
+</div>
+</br>

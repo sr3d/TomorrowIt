@@ -67,10 +67,12 @@ input.item_description
 
 .small
 { font-size: 10px; }
+.big
+{ font-size: 14px; }
 
-a.big_link_button
+a.link_button
 { font-size: 14px; font-weight: bold; color: #ff0071; padding: 2px;}
-a.big_link_button:hover
+a.link_button:hover
 { background-color: #ff0071; color: white; }
 
 /* tasks */
@@ -106,7 +108,7 @@ a.big_link_button:hover
 .form_field_wrapper
 { margin-left: 170px; }
 
-#update_form .textbox
+#update_form .textbox, .gray_textbox
 { border: 1px solid transparent; background-color: #f4f4f4; width: 250px; padding: 5px; margin: 5px 0px; }
 
 #ical_url
@@ -124,6 +126,10 @@ a.big_link_button:hover
 
 #chain_wrapper
 { width: 170px; float: left; margin-left: 20px }
+
+#chains_wrapper
+{ margin-top: 20px;}
+
 
 .color_swatch_item a
 { display: block; }

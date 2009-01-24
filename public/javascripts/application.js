@@ -54,8 +54,25 @@ function textboxToggleValue( element, defaultValue ) {
 
 // window.currentChainTaskId =  '';
 var ChainTask = { 
-  toggleDate: function( element, date ) {
-    if( this.isTogglingDate ) { console.log('too fast');return; }
+  toggleEnableChainTasks: function( element ) { 
+    if( this.isTogglingDate ) { return; }
+
+    element = $(element);
+    if( !element.checked && !confirm("are you sure?") )
+      return;
+    new Ajax.Request( '/chain_tasks/toggle_chain_task_feature', { 
+      parameters: { authenticity_token: window._token }
+      ,onSuccess: function(){    }
+      ,onCreate: function() { ChainTask.isTogglingDate = true; }
+      ,onComplete: function() { ChainTask.isTogglingDate = false;
+        element.blur();
+      }
+    } );      
+    
+  }
+  
+  ,toggleDate: function( element, date ) {
+    if( this.isTogglingDate ) { return; }
     
     chainTaskId = this.getCurrentChainTaskId();
     element = $(element);
@@ -85,6 +102,12 @@ var ChainTask = {
   }
   
   ,selectChainTaskColor: function(element, chainTaskId ) {
+    if( !$('toggle_chain_' + chainTaskId ).checked ) {
+      Effect.Shake( $('toggle_chain_' + chainTaskId ), {
+        duration: 0.3, distance: 2});
+      //new Effect.Highlight( $('toggle_chain_' + chainTaskId), { duration: 0.3 } );
+      return;
+    }
     element = $(element);
     var wrapper = element.up('.chain_wrapper');
     var currentColor = wrapper.getAttribute('color');
@@ -100,8 +123,9 @@ var ChainTask = {
         ,id: chainTaskId
       }
       ,onSuccess: function(response) { 
-        wrapper.style.backgroundColor = "#" + selectedColor;
+        $('chain_task_name_' + chainTaskId ).style.backgroundColor = "#" + selectedColor;
         wrapper.setAttribute('color', selectedColor);
+        element.blur();
       }
     } );
   }
