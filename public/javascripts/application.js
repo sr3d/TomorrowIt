@@ -73,12 +73,11 @@ var ChainTask = {
   
   ,toggleDate: function( element, date ) {
     if( this.isTogglingDate ) { return; }
-    
     chainTaskId = this.getCurrentChainTaskId();
     element = $(element);
     new Ajax.Request( '/chain_tasks/toggle_date', { 
       parameters: { date: date, id: chainTaskId, authenticity_token: window._token }
-      ,onSuccess: function(){ element.toggleClassName('has_items').toggleClassName('chain_task_' + chainTaskId ); }
+      ,onSuccess: function(){ element.toggleClassName('has_items').toggleClassName('current_chain_task_' + chainTaskId ); }
       ,onCreate: function() { ChainTask.isTogglingDate = true; }
       ,onComplete: function() { ChainTask.isTogglingDate = false; }
     } );
@@ -89,12 +88,12 @@ var ChainTask = {
     if( window.currentChainTaskId == chainTaskId )
       return;
     
-      window.currentChainTaskId = chainTaskId;
-      element.toggleClassName( 'current' );
-      new Ajax.Request( '/chain_tasks/get_calendar', { 
-        parameters: { id: chainTaskId, authenticity_token: window._token }
-        ,onSuccess: function(){ element.toggleClassName('current') }
-      } );   
+    window.currentChainTaskId = chainTaskId;
+    // element.toggleClassName( 'current' );
+    new Ajax.Request( '/chain_tasks/get_calendar', { 
+      parameters: { id: chainTaskId, authenticity_token: window._token }
+      //,onSuccess: function(){ element.toggleClassName('current') }
+    } );   
   }
   
   ,getCurrentChainTaskId: function() { 

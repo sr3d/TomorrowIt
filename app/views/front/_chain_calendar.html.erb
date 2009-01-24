@@ -26,7 +26,7 @@ window.currentChainTaskId = '<%= default_chain_task.nil? ? '' : default_chain_ta
     </style>
     <div id='chain_task_item_wrapper_<%= chain_task.id %>' 
       style='padding: 5px;'>
-      <div class='chain_task chain_task_<%= chain_task.id %> <%= "current_chain_task current_chain_task_#{chain_task.id}" if chain_task == default_chain_task %>' >
+      <div class='chain_task current_chain_task <%= "current_chain_task_#{chain_task.id}" %>'>
         <a href='javascript:void(0);'
           onclick='ChainTask.selectChainTask(this, <%= chain_task.id %>);return false;'>
           <%= h chain_task.name %>  
