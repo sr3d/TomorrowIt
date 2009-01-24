@@ -14,8 +14,23 @@
           end
         %>
         <div id="chain_task_name_<%= item.id %>"  style='<%= style %>;padding: 7px 5px;margin-right: 30px;font-size: 11px; text-transform: uppercase;'>
-          <%= h item.name %>
+          <div id='chain_task_name_wrapper_<%= item.id %>'><%= h item.name %></div>
         </div>
+        
+        <script type="text/javascript" charset="utf-8">
+          new Ajax.InPlaceEditor( 'chain_task_name_wrapper_<%= item.id %>', '/chain_tasks/edit_name/', {
+            onEnterHover: Prototype.emptyFunction
+            ,onLeaveHover: Prototype.emptyFunction
+            ,onComplete: Prototype.emptyFunction
+            ,callback: function( form, value ) { return { 
+                "authenticity_token" : window._token
+                ,"id": <%= item.id %>
+                ,"chain_task[name]": value
+              }; 
+            }
+          });
+        </script>
+        
       </td>
       <td>
         <div style='margin-left: 25px;'>

@@ -112,6 +112,11 @@ class ChainTasksController < ApplicationController
     end    
   end
   
+  def edit_name
+    @chain_task.update_attribute :name, params[:chain_task][:name]
+    render :text => params[:chain_task][:name]
+  end
+  
   private
   
   def load_chain_task

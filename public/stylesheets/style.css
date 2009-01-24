@@ -171,3 +171,8 @@ a.link_button:hover
   { display: block; width: 30px; height: 30px; margin: 3px; }
   .color_swatch_item a span
   { display: none; }
+  
+  
+  /* edit in place for chain */
+  .editor_cancel
+  { color: white;}
