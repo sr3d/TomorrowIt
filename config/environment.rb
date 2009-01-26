@@ -78,7 +78,6 @@ Rails::Initializer.run do |config|
  #  google_asset ? google_paths[google_asset] : "#{request.protocol}#{request.host_with_port}"
  #end
 
-  
 end
 
 require 'icalendar-1.0.2/lib/icalendar'

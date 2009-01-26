@@ -14,8 +14,24 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   filter_parameter_logging :password
   
+  before_filter :adjust_format_for_iphone
+  
   
 protected
+
+  # iPhone integration
+  def adjust_format_for_iphone
+    request.format = :iphone if iphone_request?
+    flash[:notice] = "iphone"
+  end
+
+  # Return true for requests to iphone.trawlr.com
+  def iphone_request?
+    return (request.subdomains.first == "iphone" || params[:format] == "iphone")
+  end
+
+
+
   def log_user_in( user )
     self.current_user = user
     new_cookie_flag = (params[:remember_me] == "1")

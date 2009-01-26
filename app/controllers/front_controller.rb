@@ -8,7 +8,17 @@ class FrontController < ApplicationController
       render :action => 'user_view', :layout => 'authenticated_layout'
     else
       process_for_anonymous_user
-      render :layout => 'app_layout'
+      
+      respond_to do |format|
+        
+        format.iphone { 
+          render :layout => 'app_layout.iphone.erb'
+          logger.debug 'test'
+       }
+       
+        format.html { render :layout => 'app_layout' }
+
+      end
     end
   end
   

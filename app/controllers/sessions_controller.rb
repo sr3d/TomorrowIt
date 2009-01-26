@@ -3,6 +3,12 @@ class SessionsController < ApplicationController
 
   # render new.rhtml
   def new
+    respond_to do |format|
+      format.html
+      format.iphone do 
+        
+      end
+    end
   end
 
   def create

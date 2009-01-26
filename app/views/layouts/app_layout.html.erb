@@ -38,6 +38,13 @@
 					<div id="content_padding">
 					  
             <div style="height: 50px;">
+
+              <% if iphone_user_agent? # Show message for iPhone users -%>
+              <div class="message">
+                  <p>Using an iPhone? <a href="http://iphone.woemaster:3000/">Use the optimized version</a>.</p>
+              </div>
+              <% end -%>
+
   		        <% if flash[:notice] -%>
   	            <div id="notice" style="background-color: yellow; padding: 10px;text-align:center;"><%= flash[:notice] -%></div>
   	            
