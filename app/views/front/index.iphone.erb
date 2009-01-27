@@ -1,5 +1,17 @@
-<ul title="Home" selected="true">
-    <li><%= link_to 'home', '/' %></li>
-    <li><%= link_to 'login', '/sessions/new' %></li>
-    <li><%= link_to 'Logout', '/', :method => :delete, :target => '_self' %></li>
-</ul>
+<div id="login" title="login" class="panel" selected="true">
+  <h2>User</h2>
+  <fieldset>
+    <% form_tag :url => { :controller => 'sessions', :action => "create" } do %>
+      <div class="row">
+        <label>username</label>
+        <input type="textbox" name="login" value=""/>
+      </div>
+      <div class="row">
+        <label>passworld</label>
+        <input type="password" name="password" value=""/>
+      </div>    
+    </fieldset>
+    <input type="submit" name="submit" value="Login"/>
+  <% end %>
+</div>
+

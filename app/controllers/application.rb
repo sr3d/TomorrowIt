@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
+  include ApplicationHelper
   include AuthenticatedSystem
 
   # See ActionController::RequestForgeryProtection for details
@@ -22,14 +23,12 @@ protected
   # iPhone integration
   def adjust_format_for_iphone
     request.format = :iphone if iphone_request?
-    flash[:notice] = "iphone"
   end
 
   # Return true for requests to iphone.trawlr.com
   def iphone_request?
-    return (request.subdomains.first == "iphone" || params[:format] == "iphone")
+    return (request.subdomains.first == "iphone" || params[:format] == "iphone") || iphone_user_agent?
   end
-
 
 
   def log_user_in( user )
@@ -37,8 +36,6 @@ protected
     new_cookie_flag = (params[:remember_me] == "1")
     handle_remember_cookie! new_cookie_flag
     associate_temp_tasks_to_user
-    
-    #flash[:notice] = "Logged in successfully"
   end
   
   def cookies_task_ids

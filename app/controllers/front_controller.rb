@@ -1,5 +1,5 @@
 class FrontController < ApplicationController
-  layout 'unauthenticated_layout'
+  #layout 'unauthenticated_layout'
   
   def index
     if logged_in?
@@ -8,6 +8,8 @@ class FrontController < ApplicationController
       render :action => 'user_view', :layout => 'authenticated_layout'
     else
       process_for_anonymous_user
+
+      
       
       respond_to do |format|
         
