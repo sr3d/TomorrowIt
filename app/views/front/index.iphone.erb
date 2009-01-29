@@ -1,7 +1,7 @@
 <div id="login" title="login" class="panel" selected="true">
   <h2>User</h2>
   <fieldset>
-    <% form_tag :url => { :controller => 'sessions', :action => "create" } do %>
+    <% form_tag session_path do %>
       <div class="row">
         <label>username</label>
         <input type="textbox" name="login" value=""/>
@@ -11,7 +11,7 @@
         <input type="password" name="password" value=""/>
       </div>    
     </fieldset>
-    <input type="submit" name="submit" value="Login"/>
+    <p><%= submit_tag 'Log in' %></p>
   <% end %>
 </div>
 

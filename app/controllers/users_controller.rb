@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   before_filter :login_required, :except => [ :forgot_password, :new, :index, :create  ]
   
   def index
-    redirect_to :controller => 'front', :action => 'index' and return
+    respond_to do |format|
+      redirect_to :controller => 'front', :action => 'index' and return
+    end
   end
   
   def show
@@ -91,6 +93,13 @@ class UsersController < ApplicationController
         else
           flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
           render :action => 'new'
+        end
+      end
+      
+      
+      format.iphone do
+        if success && @user.errors.empty?
+          redirect_to :controller => "front", :action => "index"
         end
       end
       

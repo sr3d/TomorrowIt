@@ -30,6 +30,11 @@ class SessionsController < ApplicationController
             page << 'location.reload();'
           end
         end
+        
+        format.iphone do
+          redirect_to :controller => "front", :action => "index"
+        end
+        
       end
       
     else

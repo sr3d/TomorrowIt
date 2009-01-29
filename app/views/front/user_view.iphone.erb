@@ -1,0 +1,37 @@
+<ul id="artists" title="TomorrowIt" selected="true">
+  <li class="group">Today <%= Time.now.strftime('%m.%d.%Y')%></li>
+  <% if @today_tasks.empty? %>
+    <li>there is no task for today!</li>
+  <% else %>
+    <% @today_tasks.each do |task| %>
+      <li><%= h task.name %></li>
+    <% end %>
+  <% end %>  
+  
+  
+  <li class="group">Tomorrow <%= @tomorrow.strftime('%m.%d.%Y')%></li>
+  <% if @tomorrow_tasks.empty? %>
+    <li>there is no task for today!</li>
+  <% else %>
+    <% @tomorrow_tasks.each do |task| %>
+      <li><%= h task.name %></li>
+    <% end %>
+  <% end %>    
+</ul>
+
+
+<% form_for :task, :url => tasks_path, 
+    :html => { :id => 'new_task_form', :class => 'dialog' },
+    :condition => "",
+    :before => "" do |form| %>
+    <fieldset>
+        <h1>new task</h1>
+        <a class="button leftButton" type="cancel">Cancel</a>
+        <a class="button blueButton" type="submit">Tmr It</a>
+        
+        <label>task</label>
+        <%= form.text_field :name, :class => 'front_new_item'%>
+        <label>note</label>
+        <%= form.text_field :description, :class => 'front_new_item'%>
+    </fieldset>
+<% end %>

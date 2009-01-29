@@ -15,7 +15,6 @@ class FrontController < ApplicationController
         
         format.iphone { 
           render :layout => 'app_layout.iphone.erb'
-          logger.debug 'test'
        }
        
         format.html { render :layout => 'app_layout' }

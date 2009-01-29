@@ -56,7 +56,7 @@ CMD
   # Make sure the config files are good.  Logrotate barks about dos linebreaks
   run "dos2unix #{release_path}/config/*.*"
   # change the permission of the shell scripts
-  # run "dos2unix #{release_path}/script/*.sh;chmod +x #{release_path}/script/*.sh"
+  run "dos2unix #{release_path}/script/*.sh;chmod +x #{release_path}/script/*.sh"
     
 end
 
