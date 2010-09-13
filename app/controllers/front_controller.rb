@@ -25,8 +25,13 @@ class FrontController < ApplicationController
   
 
  
-  def about;end
-  def help;end
+  def about
+    render :layout => 'app_layout'
+  end
+  
+  def help
+    render :layout => 'app_layout'
+  end
 
 
 protected 

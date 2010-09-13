@@ -17,15 +17,15 @@ ActiveRecord::Schema.define(:version => 20090122045850) do
     t.date    "created_on"
   end
 
-  add_index "chain_task_histories", ["chain_task_id", "created_on"], :name => "index_chain_task_histories_on_chain_task_id_and_created_at"
+  add_index "chain_task_histories", ["chain_task_id", "created_on"], :name => "index_chain_task_histories_on_chain_task_id_and_created_on"
 
   create_table "chain_tasks", :force => true do |t|
-    t.string   "name",       :limit => 250, :null => false
-    t.integer  "user_id",                   :null => false
+    t.string   "name",       :limit => 250,                   :null => false
+    t.integer  "user_id",                                     :null => false
     t.string   "color",      :limit => 30
+    t.boolean  "is_active",                 :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_active"
   end
 
   add_index "chain_tasks", ["user_id"], :name => "index_chain_tasks_on_user_id"
